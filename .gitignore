@@ -1,0 +1,10 @@
+node_modules/
+.DS_Store
+*.log
+
+# Not published: PowerPoint export + teamneusta master template (kept locally only)
+*.pptx
+*.potx
+
+# Regenerable dev output of screenshot_slides.mjs (screenshots of the deck itself)
+assets/screenshots/

@@ -1,0 +1,12 @@
+{
+  "name": "t3dd26-talk",
+  "private": true,
+  "version": "1.0.0",
+  "description": "TYPO3 Developer Days 2026 — Same Content, Different CMS — Who Does It Better?",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "devDependencies": {
+    "reveal.js": "^4.6.1"
+  }
+}

@@ -1,0 +1,1072 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Same Content, Different CMS — Take one simple editorial task. Now repeat it across five CMS.</title>
+
+  <link rel="stylesheet" href="vendor/reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="vendor/reveal.js/dist/reveal.css">
+
+  <style>
+    /* ── Brand tokens ──────────────────────────────────────────── */
+    :root {
+      --navy:    #000050;
+      --purple:  #8C19F5;
+      --magenta: #FF00FF;
+      --lime:    #AAFF00;
+      --cyan:    #00AAFF;
+      --bg:      #ffffff;
+      --text:    #000050;
+      --dim:     rgba(0, 0, 80, 0.42);
+      --border:  rgba(0, 0, 80, 0.14);
+    }
+
+    /* ── Reveal base ───────────────────────────────────────────── */
+    html, body, .reveal-viewport {
+      background: var(--bg);
+    }
+
+    /* Transparent so Reveal.js .slide-background layer shows through */
+    .reveal,
+    .reveal .slides {
+      background: transparent;
+    }
+
+    .reveal {
+      font-family: 'Faktum', 'Faktum Medium', 'Aptos', system-ui, sans-serif;
+      font-size: 28px;
+      color: var(--text);
+    }
+
+    .reveal .slides > section {
+      text-align: left;
+      padding: 64px 80px;
+      box-sizing: border-box;
+    }
+
+    /* ── Typography resets ─────────────────────────────────────── */
+    .reveal h1, .reveal h2, .reveal h3,
+    .reveal h4, .reveal p, .reveal li {
+      text-transform: none;
+      letter-spacing: normal;
+      color: var(--text);
+    }
+
+    .reveal h1 {
+      font-family: 'Aptos Display', system-ui, -apple-system, sans-serif;
+      font-size: 3em;
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      margin: 0 0 0.15em;
+    }
+
+    .reveal h2 {
+      font-family: 'Aptos Display', system-ui, -apple-system, sans-serif;
+      font-size: 2em;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.3em;
+    }
+
+    .reveal h3 {
+      font-size: 0.65em;
+      font-weight: 700;
+      color: var(--purple);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin: 0 0 0.9em;
+    }
+
+    .reveal p { margin: 0; line-height: 1.6; }
+
+    /* ── Utilities ─────────────────────────────────────────────── */
+    .accent   { color: var(--purple); }
+    .dim      { color: var(--dim); }
+
+    /* ── Progress bar ──────────────────────────────────────────── */
+    .reveal .progress { color: var(--purple); height: 4px; }
+
+    /* ── Dark slide overrides ──────────────────────────────────── */
+    .reveal .slides > section.dark-slide h1,
+    .reveal .slides > section.dark-slide h2,
+    .reveal .slides > section.dark-slide h3,
+    .reveal .slides > section.dark-slide p,
+    .reveal .slides > section.dark-slide li {
+      color: #ffffff;
+    }
+
+    .reveal .slides > section.dark-slide .dim {
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .reveal .slides > section.dark-slide .accent {
+      color: #AAFF00;
+    }
+
+    .reveal .slides > section.dark-slide .border-line,
+    .reveal .slides > section.dark-slide [style*="border-top"],
+    .reveal .slides > section.dark-slide [style*="border-bottom"] {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       SLIDE 1 — Title
+    ════════════════════════════════════════════════════════════ */
+    .slide-title {
+      position: relative;
+    }
+
+    .slide-title .logo {
+      position: absolute;
+      top: 52px;
+      right: 80px;
+      height: 32px;
+    }
+
+    .slide-title .eyebrow {
+      font-size: 0.6em;
+      font-weight: 700;
+      color: var(--purple);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.2em;
+    }
+
+
+    .slide-title .meta {
+      position: absolute;
+      bottom: 52px;
+      left: 80px;
+      right: 80px;
+      font-size: 0.55em;
+      color: var(--dim);
+      display: flex;
+      justify-content: space-between;
+      border-top: 1.5px solid var(--border);
+      padding-top: 0.9em;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       SLIDE 2 — Quote
+    ════════════════════════════════════════════════════════════ */
+    .slide-quote .quotemark {
+      display: block;
+      font-family: Georgia, serif;
+      font-size: 10em;
+      line-height: 0.75;
+      color: #ffffff;
+      opacity: 0.3;
+      margin-bottom: -0.1em;
+      margin-left: -0.04em;
+    }
+
+    .slide-quote blockquote {
+      background: none;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .slide-quote blockquote p {
+      font-size: 1.5em;
+      font-weight: 700;
+      font-style: italic;
+      line-height: 1.35;
+      color: #ffffff;
+    }
+
+    .slide-quote .attribution {
+      margin-top: 1.8em;
+      font-size: 0.6em;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       SLIDE 3 — 880+
+    ════════════════════════════════════════════════════════════ */
+    .slide-880-wrap {
+      text-align: center !important;
+    }
+
+    .num-block .big {
+      font-family: 'Aptos Display', system-ui, -apple-system, sans-serif;
+      font-size: 9em;
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.04em;
+      color: #ffffff;
+    }
+
+    .num-block .big .plus {
+      color: #AAFF00;
+    }
+
+    .num-block .sublabel {
+      font-size: 0.85em;
+      color: rgba(255, 255, 255, 0.65);
+      font-weight: 400;
+      margin-top: 0.4em;
+      letter-spacing: 0.04em;
+    }
+
+    .num-block .punchline {
+      display: inline-block;
+      text-align: left;
+      font-size: 0.7em;
+      color: rgba(255, 255, 255, 0.65);
+      margin-top: 1.6em;
+      padding: 0.8em 1.2em;
+      border-left: 4px solid #AAFF00;
+      background: rgba(170, 255, 0, 0.08);
+      border-radius: 0 6px 6px 0;
+      line-height: 1.75;
+    }
+
+    .num-block .punchline strong {
+      color: #ffffff;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       SLIDE 4 — Experiment
+    ════════════════════════════════════════════════════════════ */
+    .slide-experiment .cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 52px;
+      margin-top: 0.2em;
+    }
+
+    .acme-name {
+      font-size: 0.9em;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 0.7em;
+    }
+
+    .acme-name span {
+      color: var(--dim);
+      font-weight: 400;
+    }
+
+    /* ── Full-bleed image slide with scroll animation ────────── */
+    .reveal .slides > section.slide-fullbleed {
+      padding: 0 !important;
+      overflow: hidden;
+    }
+
+    .page-scroll {
+      width: 100%;
+      height: auto;
+      display: block;
+      animation: page-pan 28s ease-in-out infinite;
+    }
+
+    @keyframes page-pan {
+      0%, 8%    { transform: translateY(0); }
+      45%, 55%  { transform: translateY(-62%); }
+      92%, 100% { transform: translateY(0); }
+    }
+
+    .acme-stats {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .acme-stats li {
+      font-size: 0.72em;
+      color: var(--navy);
+      padding: 0.4em 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      gap: 0.7em;
+    }
+
+    .acme-stats li::before {
+      content: '→';
+      color: var(--purple);
+      font-size: 0.9em;
+      flex-shrink: 0;
+    }
+
+    .cms-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .cms-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.7em;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--navy);
+    }
+
+    .cms-badge .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .cms-badge.b-typo3     { border-color: rgba(255,135,0,  0.45); }
+    .cms-badge.b-typo3     .dot { background: #FF8700; }
+    .cms-badge.b-strapi    { border-color: rgba(73, 69, 255, 0.45); }
+    .cms-badge.b-strapi    .dot { background: #4945FF; }
+    .cms-badge.b-pimcore   { border-color: rgba(0,  156, 62, 0.45); }
+    .cms-badge.b-pimcore   .dot { background: #009C3E; }
+    .cms-badge.b-storyblok { border-color: rgba(0,  185,120, 0.45); }
+    .cms-badge.b-storyblok .dot { background: #00B978; }
+    .cms-badge.b-payload   { border-color: rgba(139,111,255, 0.45); }
+    .cms-badge.b-payload   .dot { background: #8B6FFF; }
+
+    .experiment-footer {
+      margin-top: 1.2em;
+      padding-top: 0.9em;
+      border-top: 1.5px solid var(--border);
+      font-size: 0.65em;
+      color: var(--dim);
+    }
+
+    .experiment-footer strong { color: var(--purple); }
+
+    /* ════════════════════════════════════════════════════════════
+       SLIDE 5 — Core message
+    ════════════════════════════════════════════════════════════ */
+    .slide-message .line-a {
+      font-family: 'Aptos Display', system-ui, -apple-system, sans-serif;
+      font-size: 1.85em;
+      font-weight: 900;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+    }
+
+    .slide-message .line-b {
+      font-family: 'Aptos Display', system-ui, -apple-system, sans-serif;
+      font-size: 1.85em;
+      font-weight: 900;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: rgba(255, 255, 255, 0.65);
+      margin-top: 0.08em;
+    }
+
+    .slide-message .kicker {
+      font-size: 0.6em;
+      color: rgba(255, 255, 255, 0.65);
+      font-style: italic;
+      margin-top: 1.8em;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       SLIDE 6 — How this works
+    ════════════════════════════════════════════════════════════ */
+    .slide-how .cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 52px;
+      margin-top: 0.2em;
+    }
+
+    .slide-how .col-label {
+      font-size: 0.6em;
+      font-weight: 700;
+      color: var(--purple);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.8em;
+    }
+
+    .task-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .task-list li {
+      font-size: 0.72em;
+      color: var(--navy);
+      padding: 0.4em 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      gap: 0.7em;
+    }
+
+    .task-list li::before {
+      content: '→';
+      color: var(--purple);
+      font-size: 0.9em;
+      flex-shrink: 0;
+    }
+
+    .slide-how .sys-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .slide-how .sys-list li {
+      font-size: 0.75em;
+      color: var(--navy);
+      padding: 0.45em 0.8em;
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    .slide-how .live-demo-note {
+      margin-top: 1.4em;
+      padding-top: 1em;
+      border-top: 1.5px solid var(--border);
+      font-size: 0.62em;
+      color: var(--dim);
+      font-style: italic;
+    }
+
+    .slide-how .live-demo-note strong {
+      color: var(--navy);
+      font-style: normal;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       SLIDES 8–12 — System introductions
+    ════════════════════════════════════════════════════════════ */
+    .sys-type-badge {
+      display: inline-block;
+      font-size: 0.55em;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.4em 1em;
+      border-radius: 100px;
+      border: 1.5px solid var(--border);
+      color: var(--dim);
+      margin-bottom: 0.5em;
+    }
+
+    .intro-typo3   .sys-type-badge { border-color: rgba(255,135,0,  0.5); color: #FF8700; }
+    .intro-strapi  .sys-type-badge { border-color: rgba(73, 69, 255,0.5); color: #4945FF; }
+    .intro-pimcore .sys-type-badge { border-color: rgba(0,  156, 62,0.5); color: #009C3E; }
+    .intro-storyblok .sys-type-badge { border-color: rgba(0,185,120,0.5); color: #00B978; }
+    .intro-payload .sys-type-badge { border-color: rgba(139,111,255,0.5); color: #8B6FFF; }
+
+    .sys-name {
+      font-family: 'Aptos Display', system-ui, -apple-system, sans-serif;
+      font-size: 2.8em;
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.025em;
+      color: var(--navy);
+      margin: 0.1em 0 0.2em;
+    }
+
+    .sys-tagline {
+      font-size: 1em;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--dim);
+      margin-bottom: 1.2em;
+      line-height: 1.4;
+    }
+
+    .sys-points {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sys-points li {
+      font-size: 0.75em;
+      color: var(--navy);
+      padding: 0.42em 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      gap: 0.7em;
+      line-height: 1.4;
+    }
+
+    .sys-points li::before {
+      content: '→';
+      color: var(--navy);
+      flex-shrink: 0;
+    }
+
+    .sys-points li strong {
+      color: var(--navy);
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       SLIDE 7 — Launch
+    ════════════════════════════════════════════════════════════ */
+    .slide-launch .big-text {
+      font-family: 'Aptos Display', system-ui, -apple-system, sans-serif;
+      font-size: 4.5em;
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+    }
+
+    .slide-launch .note {
+      font-size: 0.62em;
+      color: rgba(255, 255, 255, 0.65);
+      font-style: italic;
+      margin-top: 1.4em;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       SLIDES — Demo links (one per system)
+    ════════════════════════════════════════════════════════════ */
+    .slide-demo-link .demo-eyebrow {
+      font-size: 0.6em;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .slide-demo-link .demo-name {
+      font-family: 'Aptos Display', system-ui, -apple-system, sans-serif;
+      font-size: 4.5em;
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      margin-top: 0.25em;
+    }
+
+    .slide-demo-link .demo-type {
+      font-size: 0.62em;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.65);
+      margin-top: 0.5em;
+    }
+
+    .slide-demo-link .demo-note {
+      display: inline-block;
+      margin-top: 1.4em;
+      font-size: 0.6em;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       ENDING — Who does it better?
+    ════════════════════════════════════════════════════════════ */
+    .slide-winner .winner-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.3em 0 0;
+    }
+
+    .slide-winner .winner-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 1.2em;
+      padding: 0.45em 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.78em;
+      line-height: 1.4;
+    }
+
+    .slide-winner .winner-list .cms-label {
+      font-weight: 700;
+      flex-shrink: 0;
+      width: 7.5em;
+    }
+
+    .slide-winner .winner-list .cms-strength {
+      color: var(--dim);
+    }
+
+    .slide-winner .footer-note {
+      font-size: 0.62em;
+      color: var(--dim);
+      font-style: italic;
+      margin-top: 1.2em;
+      padding-top: 1em;
+      border-top: 1.5px solid var(--border);
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       ENDING — I can't tell you
+    ════════════════════════════════════════════════════════════ */
+    .slide-decide .big-statement {
+      font-family: 'Aptos Display', system-ui, -apple-system, sans-serif;
+      font-size: 2.2em;
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      margin-bottom: 0.4em;
+    }
+
+    .slide-decide .sub-statement {
+      font-size: 0.82em;
+      color: var(--dim);
+      font-style: italic;
+      margin-bottom: 1em;
+    }
+
+    .slide-decide .guide-questions {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .slide-decide .guide-questions li {
+      font-size: 0.72em;
+      color: var(--dim);
+      padding: 0.4em 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      gap: 0.7em;
+      line-height: 1.45;
+    }
+
+    .slide-decide .guide-questions li::before {
+      content: '→';
+      color: var(--purple);
+      flex-shrink: 0;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       ENDING — The editor
+    ════════════════════════════════════════════════════════════ */
+    .slide-t3 .big-statement {
+      font-family: 'Aptos Display', system-ui, -apple-system, sans-serif;
+      font-size: 2em;
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 0.6em;
+    }
+
+    .slide-t3 .action {
+      font-size: 0.82em;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.6;
+      margin-top: 1em;
+      padding-left: 1.2em;
+      border-left: 4px solid #AAFF00;
+    }
+
+    .slide-t3 .action strong {
+      color: #ffffff;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       ENDING — Close
+    ════════════════════════════════════════════════════════════ */
+    .slide-close-wrap {
+      position: relative;
+    }
+
+    .slide-close .thank-you {
+      font-family: 'Aptos Display', system-ui, -apple-system, sans-serif;
+      font-size: 4.5em;
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: var(--navy);
+    }
+
+    .slide-close .contact {
+      font-size: 0.65em;
+      color: var(--dim);
+      margin-top: 1.4em;
+      line-height: 1.8;
+    }
+
+    .slide-close-wrap > .logo {
+      position: absolute;
+      top: 52px;
+      right: 80px;
+      height: 32px;
+    }
+
+    /* ── Systems overview (single slide) ────────────────────── */
+    .systems-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.3em 0 0;
+    }
+
+    .systems-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 1.2em;
+      padding: 0.5em 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sys-ov-name {
+      font-weight: 800;
+      font-size: 0.95em;
+      flex: 0 0 7.5em;
+    }
+
+    .sys-ov-type {
+      font-size: 0.6em;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--dim);
+      flex: 0 0 11em;
+    }
+
+    .sys-ov-line {
+      font-size: 0.75em;
+      color: var(--navy);
+      font-style: italic;
+    }
+
+    /* ── Fragment overrides ──────────────────────────────────── */
+    .reveal .fragment         { opacity: 0; transition: opacity 0.25s ease; }
+    .reveal .fragment.visible { opacity: 1; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- ══ 1. Title ══════════════════════════════════════════ -->
+    <section id="title" class="slide-title" data-background-image="assets/bg/bg9.png" data-background-size="cover">
+      <img class="logo" src="assets/teamneusta-logo.png" alt="team neusta">
+      <p class="eyebrow">TYPO3 Developer Days 2026</p>
+      <h1>Same Content,<br>Different CMS</h1>
+      <div class="meta">
+        <span>Susi Moog</span>
+        <span>T3DD26 &middot; August 2026</span>
+      </div>
+      <aside class="notes">
+        [No script — introduce yourself and let the title land.]
+      </aside>
+    </section>
+
+    <!-- ══ 2. Quote hook ══════════════════════════════════════ -->
+    <section id="quote" class="slide-quote-wrap dark-slide" data-background-image="assets/bg/bg5.png" data-background-size="cover">
+      <div class="slide-quote">
+        <span class="quotemark">&ldquo;</span>
+        <blockquote>
+          <p>CMS? That&rsquo;s a trivial problem.<br>Even Hybris has one built&nbsp;in.</p>
+        </blockquote>
+        <p class="attribution">&mdash; A colleague, Hybris (now SAP Commerce), ~2015</p>
+      </div>
+      <aside class="notes">
+        A few years back I was at lunch with a colleague from Hybris — which most of you probably know today as SAP Commerce.
+
+        We got to talking about content management, and he said — more or less — "CMS? That's a trivial problem. Even Hybris has one built in."
+
+        So I asked him to show me.
+
+        [pause]
+
+        It was a text field. Per page.
+
+        Not a WYSIWYG, no media library, no multi-language. One text field per page.
+
+        [pause — let the room react]
+
+        Now — to be fair — for what Hybris was built for, that was probably enough. Nobody's buying industrial machinery because the hero banner copy was well-crafted.
+
+        But that moment stayed with me.
+
+        Because he wasn't wrong to call it a CMS. It solved a real problem for a real audience. It just wasn't built for our problems.
+      </aside>
+    </section>
+
+    <!-- ══ 3. 880+ ════════════════════════════════════════════ -->
+    <section id="880" class="slide-880-wrap dark-slide" data-background-image="assets/bg/bg5.png" data-background-size="cover">
+      <div class="num-block">
+        <div class="big">880<span class="plus">+</span></div>
+        <p class="sublabel">content management systems</p>
+        <div class="punchline fragment">
+          Most of us have looked at maybe three.<br>
+          <strong>I looked at five.</strong><br>
+          <span style="font-size:0.88em;">Still 875 unexplored &mdash; but it&rsquo;s a start.</span>
+        </div>
+      </div>
+      <aside class="notes">
+        There are over 880 content management systems in existence today.
+
+        Each one was created because someone had a specific problem and decided to solve it.
+
+        Which means somewhere in that list, there are 880 different answers to the question: what matters most when managing content?
+
+        Some of those answers are wrong. Some are brilliant. Most are somewhere in between.
+
+        And most of us in this room have looked closely at maybe three of them.
+
+        [click to reveal punchline]
+
+        I looked at five.
+
+        [pause]
+
+        Which, I realize, still leaves 875 unexplored. But five is more than three, and that's the kind of rigorous research methodology we're working with today.
+      </aside>
+    </section>
+
+    <!-- ══ 7a. The demo site ═════════════════════════════════ -->
+    <section id="setup-site" class="slide-fullbleed" data-background-color="#ffffff">
+      <img class="page-scroll" src="assets/Acme-Outdoor-Startseite.png" alt="Acme Outdoor website">
+      <aside class="notes">
+        Before we start — here's the setup.
+
+        One demo website: Acme Outdoor, a fictional outdoor tourism company. Built identically in all five systems. Two languages, thirteen content element types.
+
+        Same content everywhere. The only variable is the CMS.
+
+        Details for reference:
+        — One fictional outdoor tourism company
+        — Built identically in all five systems
+        — Two languages: EN + DE
+        — Thirteen content element types
+        — Live — no polished demo
+      </aside>
+    </section>
+
+    <!-- ══ 8. Systems overview ═══════════════════════════════ -->
+    <section id="the-systems" class="slide-exp-wrap" data-background-image="assets/bg/bg11.png" data-background-size="cover" data-background-opacity="0.4">
+      <div class="slide-experiment">
+        <h3>The five systems</h3>
+        <ul class="systems-list">
+          <li>
+            <span class="sys-ov-name" style="color:#FF8700">TYPO3</span>
+            <span class="sys-ov-type">Enterprise CMS</span>
+          </li>
+          <li>
+            <span class="sys-ov-name" style="color:#4945FF">Strapi</span>
+            <span class="sys-ov-type">Headless CMS</span>
+          </li>
+          <li>
+            <span class="sys-ov-name" style="color:#009C3E">Pimcore</span>
+            <span class="sys-ov-type">DXP</span>
+          </li>
+          <li>
+            <span class="sys-ov-name" style="color:#00B978">Storyblok</span>
+            <span class="sys-ov-type">Headless + Visual Editor</span>
+          </li>
+          <li>
+            <span class="sys-ov-name" style="color:#8B6FFF">Payload</span>
+            <span class="sys-ov-type">Code-first CMS</span>
+          </li>
+        </ul>
+      </div>
+      <aside class="notes">
+        Five systems. Very briefly:
+
+        TYPO3 — you know this one. Enterprise CMS, PHP, been around 25 years. Multi-language and access rights built in.
+
+        Strapi — headless, Node.js, API-first. Editors work entirely in an admin panel with no visual preview.
+
+        Pimcore — DXP, not just a CMS. CMS + PIM + DAM in one product. Austrian company, commercial licensing since 2023.
+
+        Storyblok — headless but with a live visual editor. SaaS. The one where editors actually see what they're building.
+
+        Payload — code-first, TypeScript. Schema defined entirely in code. Admin panel is auto-generated.
+
+        That's all you need to know for now. We'll see each one in detail in the demos.
+
+        Same 5 tasks per system
+        - Create a new page & place it in the navigation
+        - Add a hero section — headline, image, CTA button
+        - Upload an image & add alt text
+        - Add a German translation of the page headline
+        - Find a published page, change a headline, republish
+
+      </aside>
+    </section>
+
+    <!-- ══ Let's find out ═══════════════════════════════════ -->
+    <section id="lets-go" class="slide-launch-wrap dark-slide" data-background-image="assets/bg/bg5.png" data-background-size="cover">
+      <div class="slide-launch">
+        <p class="big-text">Let&rsquo;s<br><span class="accent">find&nbsp;out.</span></p>
+        <p class="note">Not a ranking. A map.</p>
+      </div>
+      <aside class="notes">
+        You've met all five systems.
+
+        Now let's see what happens when an editor sits down in front of them.
+
+        Let's go.
+      </aside>
+    </section>
+
+    <!-- ══ Demo — Payload ══════════════════════════════════ -->
+    <section id="demo-payload" class="slide-demo-link dark-slide" data-background-image="assets/bg/bg5.png" data-background-size="cover">
+      <p class="demo-eyebrow">Live demo</p>
+      <p class="demo-name" style="color:#8B6FFF">Payload</p>
+      <p class="demo-type">Code-first CMS</p>
+      <p class="demo-note">shown live at the talk</p>
+      <aside class="notes">
+        Payload — code-first CMS. Shown live at the talk (was payload.shinyhappypages.de).
+        Task: add a German translation of a page, change a headline, republish.
+      </aside>
+    </section>
+
+    <!-- ══ Demo — Strapi ═══════════════════════════════════ -->
+    <section id="demo-strapi" class="slide-demo-link dark-slide" data-background-image="assets/bg/bg5.png" data-background-size="cover">
+      <p class="demo-eyebrow">Live demo</p>
+      <p class="demo-name" style="color:#4945FF">Strapi</p>
+      <p class="demo-type">Headless CMS</p>
+      <p class="demo-note">shown live at the talk</p>
+      <aside class="notes">
+        Strapi — headless CMS. Shown live at the talk (was strapi.shinyhappypages.de).
+        Task: add a German translation of a page, change a headline, republish.
+      </aside>
+    </section>
+
+    <!-- ══ Demo — Pimcore ══════════════════════════════════ -->
+    <section id="demo-pimcore" class="slide-demo-link dark-slide" data-background-image="assets/bg/bg5.png" data-background-size="cover">
+      <p class="demo-eyebrow">Live demo</p>
+      <p class="demo-name" style="color:#009C3E">Pimcore</p>
+      <p class="demo-type">DXP</p>
+      <p class="demo-note">shown live at the talk</p>
+      <aside class="notes">
+        Pimcore — DXP. Shown live at the talk (was pimcore.shinyhappypages.de).
+        Task: add a German translation of a page, change a headline, republish.
+      </aside>
+    </section>
+
+    <!-- ══ Demo — Storyblok ════════════════════════════════ -->
+    <section id="demo-storyblok" class="slide-demo-link dark-slide" data-background-image="assets/bg/bg5.png" data-background-size="cover">
+      <p class="demo-eyebrow">Live demo</p>
+      <p class="demo-name" style="color:#00B978">Storyblok</p>
+      <p class="demo-type">Headless + Visual Editor</p>
+      <p class="demo-note">shown live at the talk</p>
+      <aside class="notes">
+        Storyblok — headless + visual editor. Shown live at the talk (was storyblok.shinyhappypages.de).
+        Task: add a German translation of a page, change a headline, republish.
+      </aside>
+    </section>
+
+    <!-- ══ Demo — TYPO3 ════════════════════════════════════ -->
+    <section id="demo-typo3" class="slide-demo-link dark-slide" data-background-image="assets/bg/bg5.png" data-background-size="cover">
+      <p class="demo-eyebrow">Live demo</p>
+      <p class="demo-name" style="color:#FF8700">TYPO3</p>
+      <p class="demo-type">Enterprise CMS</p>
+      <p class="demo-note">shown live at the talk</p>
+      <aside class="notes">
+        TYPO3 — enterprise CMS. Shown live at the talk (was t3.shinyhappypages.de).
+        Task: add a German translation of a page, change a headline, republish.
+      </aside>
+    </section>
+
+    <!-- ══ Ending 1 — Bring it back ════════════════════════ -->
+    <section id="bring-it-back" class="slide-decide-wrap" data-background-image="assets/bg/bg9.png" data-background-size="cover">
+      <div class="slide-decide">
+        <h3>Now what?</h3>
+        <p class="big-statement">You&rsquo;re going to keep<br>using <span class="accent">TYPO3.</span></p>
+        <p class="sub-statement">And that&rsquo;s exactly the point. You just saw what&rsquo;s possible elsewhere &mdash; now bring it back.</p>
+      </div>
+      <aside class="notes">
+        You're not going to switch to Storyblok after this talk. You're TYPO3 developers. You're going to keep using TYPO3.
+
+        And that's exactly the point.
+
+        You just spent the last hour watching other systems solve problems. Some of them solved those problems really well.
+
+        TYPO3 is open source. That means you're not just a user — you're a potential contributor. Those ideas you just saw? They don't have to stay in other systems.
+
+        Liked the visual editing experience in Storyblok? There's work happening on that in TYPO3. Get involved.
+
+        Noticed somewhere that TYPO3 makes your editors work harder than they should? That's not a complaint — that's a bug report waiting to happen. Or an extension. Or a core patch.
+
+        The best thing that can come out of a talk like this isn't "I should use a different CMS." It's "I know what good looks like now — and I'm going to help build it."
+      </aside>
+    </section>
+
+    <!-- ══ Ending 2 — Core message ═══════════════════════════ -->
+    <section id="core-message" class="slide-msg-wrap dark-slide" data-background-image="assets/bg/bg12.png" data-background-size="cover">
+      <div class="slide-message">
+        <p class="line-a">Every CMS solved at least one<br>problem <span class="accent">brilliantly.</span></p>
+        <p class="line-b">The question is whether you&rsquo;re<br>learning from it &mdash; or ignoring it.</p>
+        <p class="kicker">Even a text field per page taught someone something.</p>
+      </div>
+      <aside class="notes">
+        If you leave with one sentence from this talk, I want it to be this:
+
+        Every CMS solved at least one problem brilliantly. The question is whether you're borrowing those ideas — or ignoring them.
+
+        Even a text field per page taught someone something.
+      </aside>
+    </section>
+
+    <!-- ══ Ending 3 — The editor ═════════════════════════════ -->
+    <section id="the-editor" class="slide-t3-wrap dark-slide" data-background-image="assets/bg/bg8.png" data-background-size="cover">
+      <div class="slide-t3">
+        <h3>The person you&rsquo;re building for</h3>
+        <p class="big-statement">Your editor spends hours<br>every day in the system<br>you <span class="accent">built.</span></p>
+        <p class="action">
+          They don&rsquo;t know what TypoScript is.<br>
+          They don&rsquo;t care about the content model.<br>
+          <strong>They just want to publish a page without calling you.</strong>
+        </p>
+      </div>
+      <aside class="notes">
+        Before we close — one thing.
+
+        The editor. The actual human being sitting in front of the system you built.
+
+        They don't know what TypoScript is. They've never seen a TCA configuration. They don't know why the image upload works differently on this page than on that one.
+
+        They just want to publish a page. Without calling you. Without filing a ticket. Without giving up and sending the content in an email instead.
+
+        [pause]
+
+        Every system we looked at today was built by developers, for a specific vision of what editing should feel like. Some got it right. Some didn't.
+
+        You have the same choice in every project you build.
+
+        Sit with your editor for five minutes before you call it done. Don't explain anything. Don't help. Just watch.
+
+        That's it. That's the whole talk.
+      </aside>
+    </section>
+
+  </div>
+</div>
+
+<script src="vendor/reveal.js/dist/reveal.js"></script>
+<script src="vendor/reveal.js/plugin/notes/notes.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    width: 1280,
+    height: 720,
+    margin: 0,
+    minScale: 0.2,
+    maxScale: 2.0,
+    transition: 'fade',
+    transitionSpeed: 'fast',
+    controls: false,
+    progress: true,
+    center: true,
+    plugins: [ RevealNotes ],
+  });
+</script>
+</body>
+</html>
