@@ -77,12 +77,12 @@ Datei: `assets/videos/demo1-tui.mp4` (~52 Sek., echte herdr-TUI-Aufnahme, Light-
 
 ## [SLIDE 11 — VIDEO 2: Die Update-Runde] (19:00)
 
-Datei: `assets/videos/demo2-tui.mp4` (~53 Sek., echte herdr-TUI-Aufnahme, Light-Theme, drei Worker parallel).
+Datei: `assets/videos/demo2-tui.mp4` (~48 Sek., echte herdr-TUI-Aufnahme, Light-Theme, vier Worker parallel).
 
-> Video 2: Die wöchentliche Update-Runde. Die echte herdr-TUI: ein Controller-Agent startet drei Worker (t3, strapi, payload) im separaten Tab, je ~1/3 Breite.
+> Video 2: Die wöchentliche Update-Runde. Die echte herdr-TUI: ein Controller-Agent startet vier Worker (t3, strapi, payload, magnolia) im separaten Tab, je 1/4 Breite.
 >
-> 1. Der Controller tippt live `herdr agent start` × 3 — die Worker erscheinen mit π-Badges.
-> 2. Tab-Wechsel auf den Repos-Tab: drei Panes, parallel.
+> 1. Der Controller tippt live `herdr agent start` × 4 — die Worker erscheinen mit π-Badges.
+> 2. Tab-Wechsel auf den Repos-Tab: vier Panes, parallel.
 > 3. Jeder Worker prüft sein Repo: git-Stand, offene MRs, Prod-URL. Bericht nach /tmp/herdr-talk/<repo>.md.
 > 4. Am Ende: DONE vom Controller. Berichte in Dateien, Audit bei mir.
 
