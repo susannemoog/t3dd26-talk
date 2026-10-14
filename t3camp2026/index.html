@@ -1,0 +1,1020 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Ein Agent ist nett. Neun sind ein Team — TYPO3camp Berlin 2026</title>
+
+  <link rel="stylesheet" href="vendor/reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="vendor/reveal.js/dist/reveal.css">
+
+  <style>
+    /* ── Brand tokens ──────────────────────────────────────────── */
+    :root {
+      --navy:    #000050;
+      --purple:  #8C19F5;
+      --magenta: #FF00FF;
+      --lime:    #AAFF00;
+      --cyan:    #00AAFF;
+      --bg:      #ffffff;
+      --text:    #000050;
+      --dim:     rgba(0, 0, 80, 0.42);
+      --border:  rgba(0, 0, 80, 0.14);
+    }
+
+    /* ── Reveal base ───────────────────────────────────────────── */
+    html, body, .reveal-viewport {
+      background: var(--bg);
+    }
+
+    /* Transparent so Reveal.js .slide-background layer shows through */
+    .reveal,
+    .reveal .slides {
+      background: transparent;
+    }
+
+    .reveal {
+      font-family: 'Faktum', 'Faktum Medium', 'Aptos', system-ui, sans-serif;
+      font-size: 28px;
+      color: var(--text);
+    }
+
+    .reveal .slides > section {
+      text-align: left;
+      padding: 64px 80px;
+      box-sizing: border-box;
+    }
+
+    /* ── Typography resets ─────────────────────────────────────── */
+    .reveal h1, .reveal h2, .reveal h3,
+    .reveal h4, .reveal p, .reveal li {
+      text-transform: none;
+      letter-spacing: normal;
+      color: var(--text);
+    }
+
+    .reveal h1 {
+      font-family: 'Aptos Display', system-ui, -apple-system, sans-serif;
+      font-size: 3em;
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      margin: 0 0 0.15em;
+    }
+
+    .reveal h2 {
+      font-family: 'Aptos Display', system-ui, -apple-system, sans-serif;
+      font-size: 2em;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.3em;
+    }
+
+    .reveal h3 {
+      font-size: 0.65em;
+      font-weight: 700;
+      color: var(--purple);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin: 0 0 0.9em;
+    }
+
+    .reveal p { margin: 0; line-height: 1.6; }
+
+    /* ── Utilities ─────────────────────────────────────────────── */
+    .accent   { color: var(--purple); }
+    .dim      { color: var(--dim); }
+
+    /* ── Progress bar ──────────────────────────────────────────── */
+    .reveal .progress { color: var(--purple); height: 4px; }
+
+    /* ── Dark slide overrides ──────────────────────────────────── */
+    .reveal .slides > section.dark-slide h1,
+    .reveal .slides > section.dark-slide h2,
+    .reveal .slides > section.dark-slide h3,
+    .reveal .slides > section.dark-slide p,
+    .reveal .slides > section.dark-slide li {
+      color: #ffffff;
+    }
+
+    .reveal .slides > section.dark-slide .dim {
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .reveal .slides > section.dark-slide .accent {
+      color: #AAFF00;
+    }
+
+    .reveal .slides > section.dark-slide .border-line,
+    .reveal .slides > section.dark-slide [style*="border-top"],
+    .reveal .slides > section.dark-slide [style*="border-bottom"] {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       SLIDE 1 — Title
+    ════════════════════════════════════════════════════════════ */
+    .slide-title {
+      position: relative;
+    }
+
+    .slide-title .logo {
+      position: absolute;
+      top: 52px;
+      right: 80px;
+      height: 32px;
+    }
+
+    .slide-title .eyebrow {
+      font-size: 0.6em;
+      font-weight: 700;
+      color: var(--purple);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.2em;
+    }
+
+    .slide-title .subtitle {
+      font-size: 0.85em;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--dim);
+      line-height: 1.5;
+      margin-top: 0.9em;
+      max-width: 26em;
+    }
+
+    .slide-title .meta {
+      position: absolute;
+      bottom: 52px;
+      left: 80px;
+      right: 80px;
+      font-size: 0.55em;
+      color: var(--dim);
+      display: flex;
+      justify-content: space-between;
+      border-top: 1.5px solid var(--border);
+      padding-top: 0.9em;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       SLIDE 2 — These
+    ════════════════════════════════════════════════════════════ */
+    .slide-quote .quotemark {
+      display: block;
+      font-family: Georgia, serif;
+      font-size: 10em;
+      line-height: 0.75;
+      color: #ffffff;
+      opacity: 0.3;
+      margin-bottom: -0.1em;
+      margin-left: -0.04em;
+    }
+
+    .slide-quote blockquote {
+      background: none;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .slide-quote blockquote p {
+      font-size: 1.5em;
+      font-weight: 700;
+      font-style: italic;
+      line-height: 1.35;
+      color: #ffffff;
+    }
+
+    .slide-quote .attribution {
+      margin-top: 1.8em;
+      font-size: 0.6em;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .slide-quote .plan {
+      margin-top: 1.6em;
+      font-size: 0.65em;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.65);
+      padding-left: 1.2em;
+      border-left: 4px solid #AAFF00;
+    }
+
+    .slide-quote .plan strong {
+      color: #ffffff;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       SLIDE 3 — Stack: drei Bausteine
+    ════════════════════════════════════════════════════════════ */
+    .stack-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.4em 0 0;
+      counter-reset: stack;
+    }
+
+    .stack-list li {
+      counter-increment: stack;
+      display: flex;
+      align-items: baseline;
+      gap: 1.2em;
+      padding: 0.65em 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.8em;
+      line-height: 1.45;
+    }
+
+    .stack-list li::before {
+      content: counter(stack);
+      font-family: 'Aptos Display', system-ui, -apple-system, sans-serif;
+      font-size: 1.6em;
+      font-weight: 900;
+      color: var(--purple);
+      flex-shrink: 0;
+      width: 0.9em;
+    }
+
+    .stack-list .stack-label {
+      font-weight: 800;
+      flex-shrink: 0;
+      width: 8.5em;
+      color: var(--navy);
+    }
+
+    .stack-list .stack-desc {
+      color: var(--dim);
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       SLIDE 4 — Warum MCP
+    ════════════════════════════════════════════════════════════ */
+    .slide-mcp .cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 52px;
+      margin-top: 0.2em;
+    }
+
+    .slide-mcp .col-label {
+      font-size: 0.6em;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.8em;
+    }
+
+    .slide-mcp .col-label.bad  { color: var(--dim); }
+    .slide-mcp .col-label.good { color: var(--purple); }
+
+    .slide-mcp ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .slide-mcp ul li {
+      font-size: 0.72em;
+      color: var(--navy);
+      padding: 0.45em 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      gap: 0.7em;
+      line-height: 1.45;
+    }
+
+    .slide-mcp .bad-col li::before {
+      content: '?';
+      color: var(--dim);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .slide-mcp .good-col li::before {
+      content: '→';
+      color: var(--purple);
+      flex-shrink: 0;
+    }
+
+    .slide-mcp .punchline {
+      margin-top: 1.4em;
+      padding-top: 1em;
+      border-top: 1.5px solid var(--border);
+      font-size: 0.85em;
+      font-weight: 800;
+      color: var(--navy);
+    }
+
+    .slide-mcp .punchline .accent { color: var(--purple); }
+
+    /* ════════════════════════════════════════════════════════════
+       SLIDE 5 — AGENTS.md als Vertrag
+    ════════════════════════════════════════════════════════════ */
+    .slide-agentsmd .rules {
+      list-style: none;
+      padding: 0;
+      margin: 0.3em 0 0;
+    }
+
+    .slide-agentsmd .rules li {
+      font-family: 'Aptos Display', system-ui, -apple-system, sans-serif;
+      font-size: 1.05em;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--navy);
+      padding: 0.55em 0 0.55em 1.2em;
+      border-left: 4px solid var(--purple);
+      margin-bottom: 0.7em;
+      background: rgba(140, 25, 245, 0.05);
+      border-radius: 0 6px 6px 0;
+    }
+
+    .slide-agentsmd .rules li .rule-src {
+      display: block;
+      font-family: 'Faktum', 'Faktum Medium', 'Aptos', system-ui, sans-serif;
+      font-size: 0.62em;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--dim);
+      margin-top: 0.35em;
+    }
+
+    .slide-agentsmd .footer-note {
+      font-size: 0.65em;
+      color: var(--dim);
+      font-style: italic;
+      margin-top: 1.4em;
+      padding-top: 1em;
+      border-top: 1.5px solid var(--border);
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       SLIDE 6 — Demo: das Beispiel
+    ════════════════════════════════════════════════════════════ */
+    .slide-demo-case .cols {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 48px;
+      margin-top: 0.2em;
+      align-items: start;
+    }
+
+    .slide-demo-case .shot {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      box-shadow: 0 12px 32px rgba(0, 0, 80, 0.12);
+    }
+
+    .slide-demo-case .shot + .shot { margin-top: 14px; }
+
+    .slide-demo-case .task-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .slide-demo-case .task-list li {
+      font-size: 0.72em;
+      color: var(--navy);
+      padding: 0.42em 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      gap: 0.7em;
+      line-height: 1.45;
+    }
+
+    .slide-demo-case .task-list li::before {
+      content: '→';
+      color: var(--purple);
+      font-size: 0.9em;
+      flex-shrink: 0;
+    }
+
+    .slide-demo-case .demo-note {
+      margin-top: 1.2em;
+      padding-top: 0.9em;
+      border-top: 1.5px solid var(--border);
+      font-size: 0.65em;
+      color: var(--dim);
+      font-style: italic;
+    }
+
+    .slide-demo-case .demo-note strong {
+      color: var(--purple);
+      font-style: normal;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       SLIDE 7 — Test-first
+    ════════════════════════════════════════════════════════════ */
+    .slide-testfirst .big-line {
+      font-family: 'Aptos Display', system-ui, -apple-system, sans-serif;
+      font-size: 1.9em;
+      font-weight: 900;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      margin-bottom: 0.5em;
+    }
+
+    .slide-testfirst .case {
+      font-size: 0.78em;
+      color: var(--dim);
+      line-height: 1.7;
+      padding: 0.9em 1.2em;
+      border-left: 4px solid var(--lime);
+      background: rgba(170, 255, 0, 0.12);
+      border-radius: 0 6px 6px 0;
+    }
+
+    .slide-testfirst .case strong { color: var(--navy); }
+
+    .slide-testfirst .kicker {
+      font-size: 0.65em;
+      color: var(--dim);
+      font-style: italic;
+      margin-top: 1.4em;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       SLIDE 8 — Das Problem skaliert nicht
+    ════════════════════════════════════════════════════════════ */
+    .slide-scale .big-line {
+      font-family: 'Aptos Display', system-ui, -apple-system, sans-serif;
+      font-size: 2em;
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      margin-bottom: 0.5em;
+    }
+
+    .slide-scale .answer {
+      font-family: 'Aptos Display', system-ui, -apple-system, sans-serif;
+      font-size: 1.4em;
+      font-weight: 900;
+      color: var(--purple);
+    }
+
+    .slide-scale .answer-desc {
+      font-size: 0.78em;
+      color: var(--dim);
+      margin-top: 0.8em;
+      line-height: 1.6;
+      max-width: 30em;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       SLIDE 9 — Das Modell
+    ════════════════════════════════════════════════════════════ */
+    .slide-model .model-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.3em 0 0;
+    }
+
+    .slide-model .model-list li {
+      font-size: 0.78em;
+      color: var(--navy);
+      padding: 0.5em 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      gap: 0.8em;
+      line-height: 1.5;
+    }
+
+    .slide-model .model-list li::before {
+      content: '→';
+      color: var(--purple);
+      flex-shrink: 0;
+    }
+
+    .slide-model .model-list li strong { color: var(--navy); }
+
+    .slide-model .model-list .limit {
+      color: var(--purple);
+      font-weight: 800;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       SLIDE 10 — Wo es bricht
+    ════════════════════════════════════════════════════════════ */
+    .slide-break .break-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.3em 0 0;
+    }
+
+    .slide-break .break-list li {
+      font-size: 0.75em;
+      color: var(--navy);
+      padding: 0.5em 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      gap: 0.8em;
+      line-height: 1.5;
+    }
+
+    .slide-break .break-list li::before {
+      content: '✕';
+      color: var(--magenta);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .slide-break .break-list li strong { color: var(--navy); }
+
+    .slide-break .break-list .dim { color: var(--dim); }
+
+    /* ════════════════════════════════════════════════════════════
+       SLIDE 11 — Lessons Learned
+    ════════════════════════════════════════════════════════════ */
+    .slide-lessons .lesson-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.3em 0 0;
+      counter-reset: lesson;
+    }
+
+    .slide-lessons .lesson-list li {
+      counter-increment: lesson;
+      font-size: 0.72em;
+      color: var(--navy);
+      padding: 0.42em 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      gap: 0.8em;
+      line-height: 1.45;
+    }
+
+    .slide-lessons .lesson-list li::before {
+      content: counter(lesson);
+      font-family: 'Aptos Display', system-ui, -apple-system, sans-serif;
+      font-size: 1.3em;
+      font-weight: 900;
+      color: var(--purple);
+      flex-shrink: 0;
+      width: 0.8em;
+    }
+
+    .slide-lessons .lesson-list li strong { color: var(--navy); }
+
+    /* ════════════════════════════════════════════════════════════
+       SLIDE 12 — Grenzen
+    ════════════════════════════════════════════════════════════ */
+    .slide-limits .limit-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.3em 0 0;
+    }
+
+    .slide-limits .limit-list li {
+      font-size: 0.78em;
+      color: var(--navy);
+      padding: 0.55em 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      gap: 0.8em;
+      line-height: 1.5;
+    }
+
+    .slide-limits .limit-list li::before {
+      content: '−';
+      color: var(--dim);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .slide-limits .limit-list li strong { color: var(--navy); }
+
+    /* ════════════════════════════════════════════════════════════
+       SLIDE 13 — Ausblick
+    ════════════════════════════════════════════════════════════ */
+    .slide-outlook .big-line {
+      font-family: 'Aptos Display', system-ui, -apple-system, sans-serif;
+      font-size: 1.9em;
+      font-weight: 900;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      margin-bottom: 0.5em;
+    }
+
+    .slide-outlook .fence {
+      font-size: 0.78em;
+      color: var(--dim);
+      line-height: 1.7;
+      padding: 0.9em 1.2em;
+      border-left: 4px solid var(--cyan);
+      background: rgba(0, 170, 255, 0.07);
+      border-radius: 0 6px 6px 0;
+    }
+
+    .slide-outlook .fence strong { color: var(--navy); }
+
+    /* ════════════════════════════════════════════════════════════
+       SLIDE 14 — Fazit
+    ════════════════════════════════════════════════════════════ */
+    .slide-fazit .line {
+      font-family: 'Aptos Display', system-ui, -apple-system, sans-serif;
+      font-size: 1.55em;
+      font-weight: 900;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+    }
+
+    .slide-fazit .line + .line { margin-top: 0.6em; }
+
+    .slide-fazit .takeaway {
+      margin-top: 1.8em;
+      font-size: 0.7em;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.65);
+      padding-left: 1.2em;
+      border-left: 4px solid #AAFF00;
+    }
+
+    .slide-fazit .takeaway strong { color: #ffffff; }
+
+    /* ════════════════════════════════════════════════════════════
+       SLIDE 15 — Links & Ende
+    ════════════════════════════════════════════════════════════ */
+    .slide-close-wrap {
+      position: relative;
+    }
+
+    .slide-close .thank-you {
+      font-family: 'Aptos Display', system-ui, -apple-system, sans-serif;
+      font-size: 4.5em;
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: var(--navy);
+    }
+
+    .slide-close .contact {
+      font-size: 0.65em;
+      color: var(--dim);
+      margin-top: 1.4em;
+      line-height: 1.8;
+    }
+
+    .slide-close-wrap > .logo {
+      position: absolute;
+      top: 52px;
+      right: 80px;
+      height: 32px;
+    }
+
+    /* ── Fragment overrides ──────────────────────────────────── */
+    .reveal .fragment         { opacity: 0; transition: opacity 0.25s ease; }
+    .reveal .fragment.visible { opacity: 1; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- ══ 1. Titelfolie ═════════════════════════════════════ -->
+    <section id="title" class="slide-title" data-background-image="../t3dd2026/assets/bg/bg9.png" data-background-size="cover">
+      <img class="logo" src="../t3dd2026/assets/teamneusta-logo.png" alt="team neusta">
+      <p class="eyebrow">TYPO3camp Berlin 2026</p>
+      <h1>Ein Agent ist nett.<br>Neun sind <span class="accent">ein Team.</span></h1>
+      <p class="subtitle">Wie ich meine DXP-Demo-Landschaft mit parallelen KI-Agenten am Leben halte</p>
+      <div class="meta">
+        <span>Susi Moog</span>
+        <span>TYPO3camp Berlin &middot; 30 Minuten &middot; Demo-Session</span>
+      </div>
+      <aside class="notes">
+        Guten Morgen! Ich bin Susi, bei neusta, und ich pflege eine etwas absurde Demo-Landschaft: neun Repositories — TYPO3, Strapi, Payload, Pimcore, Storyblok, Contentful, Magnolia … jede Headless- und CMS-Welt, die wir unseren Kunden zeigen wollen. Und alle paar Wochen stellt sich die gleiche Frage: Ist der Stand eigentlich noch aktuell? Ziehen die Repos? Sind die Merge Requests weg?
+      </aside>
+    </section>
+
+    <!-- ══ 2. Die These ══════════════════════════════════════ -->
+    <section id="these" class="slide-quote-wrap dark-slide" data-background-image="../t3dd2026/assets/bg/bg5.png" data-background-size="cover">
+      <div class="slide-quote">
+        <span class="quotemark">&ldquo;</span>
+        <blockquote>
+          <p>Vor einem Jahr: ein verbrannter Freitag.<br>Heute: neun Agenten, ein Kaffee,<br>neun Berichte.</p>
+        </blockquote>
+        <p class="attribution">Und die ehrliche Anleitung dazu — inklusive allem, was schiefgegangen ist.</p>
+        <div class="plan fragment">
+          <strong>Der Plan:</strong> erst der eine Agent und TYPO3 — da passiert die eigentliche Magie.
+          Dann die Skalierung auf neun. Und dann die unbequemen Wahrheiten.
+        </div>
+      </div>
+      <aside class="notes">
+        Vor einem Jahr hätte ich dafür einen Freitag verbrannt. Heute starte ich dafür neun KI-Agenten parallel, trinke einen Kaffee, und lese danach neun Berichte. Diese Session ist die ehrliche Anleitung dazu — inklusive allem, was schiefgegangen ist.
+
+        Der Plan: erst der eine Agent und TYPO3 — da passiert die eigentliche Magie. Dann die Skalierung auf neun. Und dann die unbequemen Wahrheiten.
+      </aside>
+    </section>
+
+    <!-- ══ 3. Der Stack ══════════════════════════════════════ -->
+    <section id="stack">
+      <h3>Der Stack</h3>
+      <h2>Drei Bausteine, ganz ohne Mystik</h2>
+      <ol class="stack-list">
+        <li>
+          <span class="stack-label">Coding-Agent</span>
+          <span class="stack-desc">Im Terminal — bei mir <strong>pi</strong>, aber austauschbar. Wichtig: er kann Dateien lesen, Befehle ausführen, Git bedienen.</span>
+        </li>
+        <li>
+          <span class="stack-label">MCP</span>
+          <span class="stack-desc">Model Context Protocol — Werkzeuge über &bdquo;Datei lesen, Befehl ausführen&ldquo; hinaus. Bei mir: ein TYPO3-Dev-Companion mit rund 30 Werkzeugen gegen Forge, Gerrit, Changelog, Datenbank, DI-Image, TCA.</span>
+        </li>
+        <li>
+          <span class="stack-label">AGENTS.md</span>
+          <span class="stack-desc">Das Gedächtnis — Regeln und Lessons Learned, die in jedem Agent-Start mitgelesen werden.</span>
+        </li>
+      </ol>
+      <aside class="notes">
+        Zuerst der Stack, ganz ohne Mystik. Drei Bausteine:
+
+        1. Ein Coding-Agent im Terminal — bei mir pi, aber der Agent ist austauschbar. Wichtig ist: er kann Dateien lesen, Befehle ausführen, Git bedienen.
+
+        2. MCP — Model Context Protocol. Der Agent bekommt damit Werkzeuge an die Hand, die über "Datei lesen, Befehl ausführen" hinausgehen. Bei mir: ein TYPO3-Dev-Companion mit rund 30 Werkzeugen, die direkt gegen die Installation und gegen die TYPO3-Infrastruktur fragen — Forge, Gerrit, Changelog, die Datenbank, das DI-Image, TCA.
+
+        3. AGENTS.md — das Gedächtnis. Regeln und Lessons Learned, die in jedem Agent-Start mitgelesen werden.
+      </aside>
+    </section>
+
+    <!-- ══ 4. Warum MCP ══════════════════════════════════════ -->
+    <section id="mcp" class="slide-mcp">
+      <h3>Warum MCP für TYPO3 der Unterschied ist</h3>
+      <h2>Raten oder nachschauen</h2>
+      <div class="cols">
+        <div class="bad-col">
+          <p class="col-label bad">Ohne MCP — Halluzination mit gutem Stil</p>
+          <ul>
+            <li>Welche TCA-Config hat das Feld?</li>
+            <li>Welcher Content-Type rendert über welches Template?</li>
+            <li>Was steht in der Datenbank?</li>
+          </ul>
+        </div>
+        <div class="good-col">
+          <p class="col-label good">Mit MCP — nachschlagen statt raten</p>
+          <ul>
+            <li>Schema der Tabelle abfragen</li>
+            <li>Datensätze lesen</li>
+            <li>DI-Image fragen: welchen Service löst ein Interface auf?</li>
+          </ul>
+        </div>
+      </div>
+      <p class="punchline fragment">Der Agent hört auf zu raten und fängt an <span class="accent">nachzuschauen</span>. Genau das ist der Sprung.</p>
+      <aside class="notes">
+        Warum ist MCP der Unterschied zwischen "nett" und "produktiv"? Ohne MCP rät der Agent: Welche TCA-Config hat das Feld? Welcher Content-Type rendert über welches Template? Was steht in der Datenbank? Ohne Werkzeuge ist das Halluzination mit gutem Stil.
+
+        Mit MCP werden daraus Fragen: Ich frage das Schema der Tabelle ab, ich lese die Datensätze, ich frage das DI-Image, welchen Service ein Interface auflöst. Der Agent hört auf zu raten und fängt an nachzuschauen. Genau das ist der Sprung.
+      </aside>
+    </section>
+
+    <!-- ══ 5. AGENTS.md als Vertrag ══════════════════════════ -->
+    <section id="agents-md" class="slide-agentsmd">
+      <h3>AGENTS.md als Vertrag</h3>
+      <h2>Banal — und trotzdem Gold wert</h2>
+      <ul class="rules">
+        <li>&bdquo;Deployment immer über GitLab CI, nie manuell von der Maschine.&ldquo;</li>
+        <li>&bdquo;Richtext-Felder mit HTML, Plain-Text-Felder ohne.&ldquo;</li>
+        <li>&bdquo;Unit-Tests zuerst schreiben, dann den Fix.&ldquo;</li>
+      </ul>
+      <p class="footer-note">Jede Zeile darin ist ein Unfall, der einmal passiert ist. Darauf komme ich in Akt 4 zurück.</p>
+      <aside class="notes">
+        Und das dritte Bauteil: eine AGENTS.md pro Projekt. Mein Regelwerk ist erstaunlich banal und trotzdem Gold wert: "Deployment immer über GitLab CI, nie manuell von der Maschine." "Richtext-Felder mit HTML, Plain-Text-Felder ohne." "Unit-Tests zuerst schreiben, dann den Fix." Jede Zeile darin ist übrigens ein Unfall, der einmal passiert ist. Darauf komme ich in Akt 4 zurück.
+      </aside>
+    </section>
+
+    <!-- ══ 6. Demo 1: das Beispiel ═══════════════════════════ -->
+    <section id="demo-case" class="slide-demo-case">
+      <h3>Demo 1 — Ein Agent schreibt TYPO3-Content</h3>
+      <h2>Acme Outdoor bekommt &bdquo;Workations&ldquo;</h2>
+      <div class="cols">
+        <div>
+          <ul class="task-list">
+            <li>Neue Seite <strong>/tours/workations</strong>, neun Content-Elemente</li>
+            <li>Teaser, ein News-Artikel, englische Übersetzung</li>
+            <li>Vorher: ein halber Tag Redaktion im Backend</li>
+            <li>Heute: <strong>eine Unterhaltung</strong></li>
+          </ul>
+          <p class="demo-note">Live-Demo — <strong>Fallback: Screenshots rechts</strong>, fertiges Ergebnis zeigen, Workflow erzählen.</p>
+        </div>
+        <div>
+          <img class="shot" src="../t3dd2026/assets/website-setup.png" alt="Website-Setup der DXP-Demo-Landschaft">
+          <img class="shot" src="../t3dd2026/assets/Acme-Outdoor-Startseite.png" alt="Acme Outdoor Startseite">
+        </div>
+      </div>
+      <aside class="notes">
+        Jetzt Live-Demo. Das Szenario: Unsere TYPO3-Demo "Acme Outdoor" soll eine neue Produktseite bekommen — "Workations". Seite, neun Content-Elemente, Teaser, ein News-Artikel, englische Übersetzung. Vorher: ein halber Tag Redaktion im Backend. Heute: eine Unterhaltung.
+
+        ───────────────────────────────
+        DEMO 1a — Auslesen statt raten, ca. 3 Min
+        Vorbereitung: t3-Demo läuft lokal (ddev), pi geöffnet, Projektkontext geladen.
+        1. Schema zeigen: typo3_schema_lookup für tt_content — "Was liefert mir ein Teaser-Feld für Spalten?"
+        2. Bestehenden Datensatz zeigen: typo3_record_lookup auf tt_content mit {"CType": "acme_teaser"} — "Wie sieht so ein Element bei uns aus?"
+        3. Sprechtext: "Ich sage dem Agenten nicht, wie unsere Felder heißen. Ich lasse ihn nachschauen. Er liest die bestehende Workations-Seite? Nein — er liest ein bestehendes Teaser-Element und ahmt dessen Format nach. Genau das hätte ein neuer Kollege auch tun sollen."
+        ───────────────────────────────
+        FALLBACK 1a: ../t3dd2026/assets/screenshots/website-setup.png + ../t3dd2026/assets/Acme-Outdoor-Startseite.png — fertiges Ergebnis zeigen, Workflow erzählen.
+        ───────────────────────────────
+        DEMO 1b — Schreiben mit Fallstricken, ca. 3 Min
+        1. Auftragen: "Lege die Seite /tours/workations auf doktype 101 an, mit Feature-Elementen und einem Teaser. Englische Übersetzung gleich mit."
+        2. Live mitschauen, wie der Agent: Seite anlegt → Inline-Records als Array schreibt → Übersetzung macht.
+        3. Absichtlicher Moment: "Und jetzt der Teil, den ich in der Session-Vorbereitung kaputt bekommen habe:" Plain-Text-Feld mit <p>-HTML beschreiben → im Frontend zeigen → Tags sichtbar als Text. → Fix aus der AGENTS.md: Feldtyp entscheidet das Rendering, nicht das Template.
+        4. Sprechtext: "Dieser Fehler ist dreimal passiert, bevor er in die AGENTS.md kam. Heute liest der Agent die Regel, bevor er schreibt. Das ist der Unterschied zwischen einem Spielzeug und einem Werkzeug."
+      </aside>
+    </section>
+
+    <!-- ══ 7. Test-first mit Agenten ═════════════════════════ -->
+    <section id="test-first" class="slide-testfirst">
+      <h3>Test-first mit Agenten</h3>
+      <p class="big-line">Kein Verhaltenswechsel ohne Unit-Test.<br>Bugfixes <span class="accent">test-first</span>.</p>
+      <div class="case">
+        <strong>Beispiel aus dem Repo:</strong> YouTube-Watch-URLs in einem ViewHelper normalisiert —
+        zwölf Unit-Tests, rot zuerst, dann der Fix.
+      </div>
+      <p class="kicker">Der Agent schreibt Tests tatsächlich besser als die meisten Menschen — weil er keine Langeweile dabei empfindet.</p>
+      <aside class="notes">
+        Kurzer Ausflug, weil bei TYPO3-Leuten gleich die Nachfrage kommt: Was ist mit Tests? Meine Regel im AGENTS.md: Kein Verhaltenswechsel ohne Unit-Test, Bugfixes test-first. Beispiel aus dem Repo: YouTube-Watch-URLs in einem ViewHelper normalisiert — zwölf Unit-Tests, rot zuerst, dann der Fix. Der Agent schreibt Tests tatsächlich besser als die meisten Menschen, weil er keine Langeweile dabei empfindet.
+      </aside>
+    </section>
+
+    <!-- ══ 8. Das Problem skaliert nicht ═════════════════════ -->
+    <section id="scale" class="slide-scale">
+      <h3>Akt 4 — Skalierung</h3>
+      <p class="big-line">Neun Repos, ein Agent, dreißig Minuten pro Runde.<br>Beim dritten Mal hatte ich die Nase voll.</p>
+      <p class="answer">Die Antwort heißt herdr.</p>
+      <p class="answer-desc">Ein Terminal-Workspace-Manager, mit dem ich mehrere Coding-Agenten parallel steuern kann.</p>
+      <aside class="notes">
+        Zurück zur Ausgangsfrage: neun Repos. Ein Agent arbeitet das sequentiell ab — Repo-für-Repo, jede Runde dreißig Minuten. Beim dritten Mal hatte ich die Nase voll. Die Antwort heißt herdr: ein Terminal-Workspace-Manager, mit dem ich mehrere Coding-Agenten parallel steuern kann.
+      </aside>
+    </section>
+
+    <!-- ══ 9. Das Modell ═════════════════════════════════════ -->
+    <section id="model" class="slide-model">
+      <h3>Das Modell</h3>
+      <h2>Ein Agent pro Repo</h2>
+      <ul class="model-list">
+        <li><strong>Ein Tab pro Projekt</strong> — in jedem Tab ein Agent.</li>
+        <li>Der Steuer-Agent beauftragt alle nacheinander — <span class="limit">maximal fünf parallel</span>, das ist das API-Limit. Die Grenze liegt nicht bei herdr, sondern einen Layer darüber.</li>
+        <li>Jeder Agent schreibt sein Ergebnis <strong>in eine Datei</strong> und antwortet nur mit &bdquo;DONE&ldquo;. Nicht in den Pane-Output — den kann man nicht zuverlässig einsammeln.</li>
+        <li>Ich sammle die Dateien ein und mache daraus <strong>den Bericht</strong>.</li>
+      </ul>
+      <aside class="notes">
+        Das Modell ist einfach:
+
+        - Ein Tab pro Projekt, in jedem Tab ein Agent.
+        - Der Steuer-Agent (ich, bzw. diese Session) beauftragt alle nacheinander — maximal fünf parallel, das ist das API-Limit. Wichtig zu wissen: die Grenze liegt nicht bei herdr, sondern einen Layer darüber.
+        - Jeder Agent schreibt sein Ergebnis in eine Datei und antwortet nur mit "DONE". Nicht in den Pane-Output — den kann man nicht zuverlässig einsammeln.
+        - Ich sammle die Dateien ein und mache daraus den Bericht.
+
+        ───────────────────────────────
+        DEMO 2 — Live: Update-Runde über mehrere Repos, ca. 5 Min
+        Vorbereitung: herdr-Workspace offen, mind. drei Demo-Tabs bereit (t3, strapi, payload reichen für die Demo).
+        1. Auftragen: "Prüfe in jedem Repo: git-Stand, offene MRs, Prod-URL erreichbar. Ergebnis nach /tmp/herdr-talk/<repo>.md, antworte nur mit DONE."
+        2. Während die Agenten laufen — das ist der Moment für die Erzählung: "Und jetzt passiert … erstmal nichts Sichtbares. Das ist der Punkt, den Leute am schwersten glauben: Ich warte. Fünf Agenten arbeiten, ich trinke Kaffee."
+        3. Ergebnisse einsammeln, Bericht vorlesen: "Strapi ist aktuell, keine offenen MRs. Payload war zwei Commits behind, jetzt gezogen. Pimcore-EE hat zwei Major-Bump-MRs offen, die lasse ich liegen — rote Pipeline."
+        4. Sprechtext: "Das war vor einem Jahr mein freier Freitag. Heute: elf Minuten, davon war ich aktiv viereinhalb."
+        ───────────────────────────────
+        FALLBACK 2: Aufzeichnung der Runde vom 30.9. (VIDEO, 90 Sek., geschnitten) — vorbereiten: assets/videos/herdr-update-round.mp4.
+      </aside>
+    </section>
+
+    <!-- ══ 10. Wo es bricht ══════════════════════════════════ -->
+    <section id="breaks" class="slide-break">
+      <h3>Wo es bricht</h3>
+      <h2>Was schiefgeht — und was jede Präsentation unterschlägt</h2>
+      <ul class="break-list">
+        <li><span><strong>Concurrency-Limit 5:</strong> Agent Nummer sechs bekommt ein 429 und läuft nie. <span class="dim">Er ist nicht fehlgeschlagen — er existiert nicht. Das dauerte, bis ich es verstanden hatte.</span></span></li>
+        <li><span><strong>Pane-Output ist keine Schnittstelle:</strong> Nicht eingesammelte Antworten sind weg. <span class="dim">Dateien, immer Dateien.</span></span></li>
+        <li><span><strong>Ein unvorsichtiger Agent macht echte Git-Historie:</strong> <span class="dim">Deshalb stehen Deployment- und Commit-Regeln in der AGENTS.md, nicht im Prompt.</span></span></li>
+        <li><span><strong>Parallelität bedeutet auch paralleles Fehlverhalten:</strong> Neun Agenten, die denselben falschen Kontext haben, sind neun falsche Ergebnisse. <span class="dim">Der Kontext muss vor dem Start stimmen.</span></span></li>
+      </ul>
+      <aside class="notes">
+        Und damit zu dem, was schiefgeht — weil das der Teil ist, den jede Präsentation zu KI-Arbeit unterschlägt:
+
+        - Concurrency-Limit 5: Agent Nummer sechs bekommt ein 429 und läuft nie. Er ist nicht fehlgeschlagen — er existiert nicht. Das dauerte, bis ich es verstanden hatte.
+        - Pane-Output ist keine Schnittstelle: Nicht eingesammelte Antworten sind weg. Dateien, immer Dateien.
+        - Ein unvorsichtiger Agent macht echte Git-Historie: Deshalb stehen Deployment- und Commit-Regeln in der AGENTS.md, nicht im Prompt.
+        - Parallelität bedeutet auch paralleles Fehlverhalten: Neun Agenten, die denselben falschen Kontext haben, sind neun falsche Ergebnisse. Der Kontext muss vor dem Start stimmen.
+      </aside>
+    </section>
+
+    <!-- ══ 11. Lessons Learned ═══════════════════════════════ -->
+    <section id="lessons" class="slide-lessons">
+      <h3>Was ich gelernt habe</h3>
+      <h2>Fünf Sätze an mich von vor einem Jahr</h2>
+      <ol class="lesson-list">
+        <li><span><strong>Der eine Agent ist der Produktivitätssprung, nicht die neun.</strong> Content via MCP, test-first, Repohygiene — das ist der Hebel. Skalierung ist Bonus.</span></li>
+        <li><span><strong>Halluzination ist fehlender Zugriff, fehlender Zugriff ist MCP.</strong> Jedes &bdquo;der Agent erfindet was&ldquo; war bei mir &bdquo;der Agent konnte nicht nachschauen&ldquo;.</span></li>
+        <li><span><strong>AGENTS.md ist die einzige Form von Prompts, die sich lohnt.</strong> Sie überlebt die Session, sie überlebt den Modellwechsel.</span></li>
+        <li><span><strong>Parallele Agenten brauchen Verträge, nicht Beaufsichtigung.</strong> Concurrency-Limits, Ergebnis-Dateien, klare Don'ts.</span></li>
+        <li><span><strong>Audit bleibt meine Arbeit.</strong> Ich lese die Berichte, ich prüfe die MRs, ich merge. Agenten machen Vorschläge, ich trage Verantwortung.</span></li>
+      </ol>
+      <aside class="notes">
+        Fünf Sätze, die ich gern mitgegeben hätte an mich von vor einem Jahr:
+
+        1. Der eine Agent ist der Produktivitätssprung, nicht die neun. Content via MCP, test-first, Repohygiene — das ist der Hebel. Skalierung ist Bonus.
+        2. Halluzination ist fehlender Zugriff, fehlender Zugriff ist MCP. Jedes "der Agent erfindet was" war bei mir "der Agent konnte nicht nachschauen".
+        3. AGENTS.md ist die einzige Form von Prompts, die sich lohnt. Sie überlebt die Session, sie überlebt den Modellwechsel.
+        4. Parallele Agenten brauchen Verträge, nicht Beaufsichtigung. Concurrency-Limits, Ergebnis-Dateien, klare Don'ts.
+        5. Audit bleibt meine Arbeit. Ich lese die Berichte, ich prüfe die MRs, ich merge. Agenten machen Vorschläge, ich trage Verantwortung.
+      </aside>
+    </section>
+
+    <!-- ══ 12. Grenzen ═══════════════════════════════════════ -->
+    <section id="limits" class="slide-limits">
+      <h3>Was es (noch) nicht kann</h3>
+      <h2>Ehrlich: die Grenzen</h2>
+      <ul class="limit-list">
+        <li><span><strong>Architekturentscheidungen treffen.</strong> Major-Bump-MRs liegen bei mir, weil &bdquo;wir upgraden jetzt Symfony v8&ldquo; eine Frage an den Kunden ist, nicht an den Agenten.</span></li>
+        <li><span><strong>Kontext über Session-Grenzen mitnehmen</strong> — außer ich schreibe ihn in die AGENTS.md. Das Gedächtnis ist eine Datei, kein Gehirn.</span></li>
+        <li><span><strong>Sich selbst kontrollieren.</strong> Feedback-Loops an den MCP-Server sind Gold wert — ich melde jedes falsche Antwortverhalten zurück —, aber der Loop schließt bei mir.</span></li>
+      </ul>
+      <aside class="notes">
+        Ehrlich: Was es nicht kann.
+
+        - Architekturentscheidungen treffen. Major-Bump-MRs liegen bei mir, weil "wir upgraden jetzt Symfony v8" eine Frage an den Kunden ist, nicht an den Agenten.
+        - Kontext über Session-Grenzen mitnehmen — außer ich schreibe ihn in die AGENTS.md. Das Gedächtnis ist eine Datei, kein Gehirn.
+        - Sich selbst kontrollieren. Feedback-Loops an den MCP-Server sind Gold wert — ich melde jedes falsche Antwortverhalten zurück, damit der Server besser wird —, aber der Loop schließt bei mir.
+      </aside>
+    </section>
+
+    <!-- ══ 13. Ausblick ══════════════════════════════════════ -->
+    <section id="outlook" class="slide-outlook">
+      <h3>Der Ausblick</h3>
+      <p class="big-line">Agenten, die nicht nur lesen,<br>sondern <span class="accent">deployen</span>.</p>
+      <div class="case fence">
+        Mit <strong>Playwright-Smoke-Tests als Zaun</strong> drumherum:
+        Deploy, Test, bei Rot zurückrollen.
+        Daraus wird aus &bdquo;Agenten machen Vorschläge&ldquo; — &bdquo;Agenten liefern&ldquo;.
+      </div>
+      <p class="kicker" style="font-size:0.65em;color:var(--dim);font-style:italic;margin-top:1.4em;">Dafür braucht es die Tests — und genau deshalb sind sie in jedem meiner Repos.</p>
+      <aside class="notes">
+        Und was als Nächstes kommt: Der Schritt, den ich gerade teste — dieselben Agenten nicht nur lesen lassen, sondern deployen. Mit Playwright-Smoke-Tests als Zaun drumherum: Deploy, Test, bei Rot zurückrollen. Das ist der Punkt, an dem aus "Agenten machen Vorschläge" "Agenten liefern". Dafür braucht es die Tests, und genau deshalb sind sie in jedem meiner Repos.
+      </aside>
+    </section>
+
+    <!-- ══ 14. Fazit ═════════════════════════════════════════ -->
+    <section id="fazit" class="slide-fazit dark-slide" data-background-image="../t3dd2026/assets/bg/bg12.png" data-background-size="cover">
+      <p class="line">Ein Agent mit Zugriff auf Ihre Daten schlägt<br> einen Agenten mit gutem Prompt.</p>
+      <p class="line">Neun Agenten mit Regeln schlagen einen mit Momentum.</p>
+      <p class="line"><span class="accent">Und Sie — nicht der Agent — bleiben derjenige, der mergt.</span></p>
+      <p class="takeaway">Wenn Sie eine Sache mitnehmen: fangen Sie mit der <strong>AGENTS.md</strong> an, nicht mit dem Agenten.<br>Der Agent ist Kommodität. <strong>Ihr Kontext ist der Moat.</strong></p>
+      <aside class="notes">
+        Zusammengefasst in einem Satz: Ein Agent mit Zugriff auf Ihre Daten schlägt einen Agenten mit gutem Prompt. Neun Agenten mit Regeln schlagen einen mit Momentum. Und Sie — nicht der Agent — bleiben derjenige, der mergt.
+
+        Wenn Sie eine Sache mitnehmen: fangen Sie mit der AGENTS.md an, nicht mit dem Agenten. Der Agent ist Kommodität. Ihr Kontext ist der Moat.
+      </aside>
+    </section>
+
+    <!-- ══ 15. Links & Ende ══════════════════════════════════ -->
+    <section id="ende" class="slide-close-wrap" data-background-image="../t3dd2026/assets/bg/bg9.png" data-background-size="cover">
+      <img class="logo" src="../t3dd2026/assets/teamneusta-logo.png" alt="team neusta">
+      <div class="slide-close">
+        <p class="thank-you">Danke!<br><span class="accent">Fragen?</span></p>
+        <p class="contact">
+          Slides &amp; Demo-Repos: <span class="dim">github.com/smoog/talk</span><br>
+          Kontakt: look@susi.dev
+        </p>
+      </div>
+      <aside class="notes">
+        Slides & Demo-Repos: Link aufs Repo / Landingpage
+        Kontakt: look@susi.dev
+
+        Danke! Fragen?
+      </aside>
+    </section>
+
+  </div>
+</div>
+
+<script src="vendor/reveal.js/dist/reveal.js"></script>
+<script src="vendor/reveal.js/plugin/notes/notes.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    width: 1280,
+    height: 720,
+    margin: 0,
+    minScale: 0.2,
+    maxScale: 2.0,
+    transition: 'fade',
+    transitionSpeed: 'fast',
+    controls: false,
+    progress: true,
+    center: true,
+    plugins: [ RevealNotes ],
+  });
+</script>
+</body>
+</html>
