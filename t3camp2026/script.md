@@ -60,14 +60,14 @@ Untertitel: *Entwicklerarbeit in mehreren Projekten — orchestriert mit herdr*
 
 ## [SLIDE 9 — VIDEO 1: Agenten auf Worktrees] (14:30)
 
-Datei: `assets/videos/demo1-herdr-worktree.mp4` (62 Sek.).
+Datei: `assets/casts/demo1-herdr-worktree.cast` (asciinema, ~75 Sek., 110×34).
 
-> Video 1: Agenten auf Worktrees. Links die Steuer-Session, rechts zwei Agent-Panes.
+> Video 1: Agenten auf Worktrees. Eine Steuer-Session, zwei Worktree-Workspaces.
 >
-> 1. `herdr worktree create` — zwei Worktrees, eigener Branch je Agent.
-> 2. Agent A: TCA-Schema abfragen (typo3-dev-companion), Content-Element + Seeder bauen, Tests zuerst.
-> 3. Agent B: ViewHelper-Fix, zwölf Unit-Tests, rot zuerst.
-> 4. Der Punkt: Zwei Agenten, zwei Branches, eine Codebasis, null Konflikt.
+> 1. `herdr worktree create` × 2 — wt-talk-a11y, wt-talk-script, eigener Branch je Agent.
+> 2. `herdr agent start` × 2 (pi), je Worktree-Root-Pane.
+> 3. Agent A: Kontraste beider Decks gegen WCAG 2.1 AA prüfen und fixen. Agent B: script.md enger auf mich anpassen.
+> 4. `agent read` zeigt die Zusammenfassungen, `git status` in beiden Worktrees: zwei Branches, eine Codebasis, null Konflikt.
 
 ## [SLIDE 10 — Neun Projekte, neun Agenten] (17:00)
 
@@ -77,14 +77,15 @@ Datei: `assets/videos/demo1-herdr-worktree.mp4` (62 Sek.).
 
 ## [SLIDE 11 — VIDEO 2: Die Update-Runde] (19:00)
 
-Datei: `assets/videos/demo2-herdr-round.mp4` (58 Sek.).
+Datei: `assets/casts/demo2-herdr-round.cast` (asciinema, ~7 Sek., kompakt geschnitten — die Wartezeit ist der eine lange Beat).
 
-> Video 2: Die wöchentliche Update-Runde. Links die Steuer-Session, rechts drei Agent-Panes mit Lebenszyklus.
+> Video 2: Die wöchentliche Update-Runde. Eine Steuer-Session, zwei Agent-Panes mit Lebenszyklus.
 >
-> 1. Auftrag: *"Prüfe in jedem Repo: git-Stand, offene MRs, Prod-URL. Ergebnis nach /tmp/herdr-talk/<repo>.md, antworte nur mit DONE."*
-> 2. Während die Agenten laufen: passiert erstmal nichts Sichtbares. Ich warte.
-> 3. Berichte: *"Strapi aktuell, keine offenen MRs. Payload war zwei Commits behind, jetzt gezogen. Pimcore-EE hat zwei Major-Bump-MRs offen, rote Pipeline — liegen lassen."*
-> 4. *"Elf Minuten für neun Repos, davon vier einhalb aktiv."*
+> 1. `herdr agent rename` — die Agenten heißen nach dem Repo: t3, strapi.
+> 2. Auftrag: *"Prüfe: git-Stand, offene MRs, Prod-URL. Ergebnis nach /tmp/herdr-talk/<repo>.md, antworte nur mit DONE."*
+> 3. Während die Agenten laufen: passiert erstmal nichts Sichtbares. Ich warte.
+> 4. Berichte: *"t3: 8 Commits behind, keine MRs, Prod 401 (Auth). strapi: Renovate-Dep-Updates, keine MRs, Prod erreichbar."*
+> 5. Der Punkt: Berichte in Dateien, nicht Pane-Output. Audit bei mir.
 
 ## [SLIDE 12 — Die Update-Runde in Zahlen] (21:00)
 
@@ -138,6 +139,6 @@ Datei: `assets/videos/demo2-herdr-round.mp4` (58 Sek.).
 
 | # | Was | Stand |
 |---|---|---|
-| 1 | Beide Videos prüfen: `assets/videos/demo1-herdr-worktree.mp4`, `assets/videos/demo2-herdr-round.mp4` | ☐ |
-| 2 | Video-Abspielen im Browser testen (VLC als Reserve) | ☐ |
+| 1 | Beide Casts prüfen: `assets/casts/demo1-herdr-worktree.cast`, `assets/casts/demo2-herdr-round.cast` (asciinema-Player im Deck) | ☐ |
+| 2 | Wiedergabe im Browser testen (asciinema-CLI als Reserve: `asciinema play`) | ☐ |
 | 3 | Beamer-HDMI-Adapter, zweiter Monitor für Speaker Notes | ☐ |
