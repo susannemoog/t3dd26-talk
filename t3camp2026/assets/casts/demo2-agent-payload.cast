@@ -1,0 +1,11 @@
+{"version":2,"width":96,"height":20,"timestamp":1791971751,"env":{"SHELL":"/bin/zsh","TERM":"xterm-256color"},"title":"agent/payload"}
+[4.2,"o","\u001b[2m▸ git fetch --all …\n\u001b[0m"]
+[6,"o","develop · aktuell\n\n"]
+[8.5,"o","\u001b[2m▸ glab mr list …\n\u001b[0m"]
+[10.5,"o","!55 symfony v8 \u001b[35;1m[Pipeline rot]\u001b[0m\n"]
+[12,"o","!54 pimcore core \u001b[35;1m[Pipeline rot]\u001b[0m\n\n"]
+[15,"o","\u001b[2m▸ Major-Bumps: nicht merge-fähig\n\u001b[0m"]
+[16.5,"o","\u001b[2m  → Bericht, Merge-Entscheidung offen lassen\u001b[0m\n\n"]
+[20,"o","\u001b[2m▸ Bericht …\n\u001b[0m"]
+[23,"o","\u001b[32m✓\u001b[0m /tmp/herdr-talk/payload.md\n\n"]
+[25,"o","\u001b[1m● \u001b[0m\u001b[2mDONE\n\u001b[0m"]

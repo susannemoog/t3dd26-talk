@@ -1,0 +1,12 @@
+{"version":2,"width":96,"height":20,"timestamp":1791971751,"env":{"SHELL":"/bin/zsh","TERM":"xterm-256color"},"title":"agent/strapi"}
+[3.4,"o","\u001b[2m▸ git fetch --all …\n\u001b[0m"]
+[5,"o","develop · behind 2\n"]
+[6.5,"o","\u001b[2m▸ git pull --ff-only …\n\u001b[0m"]
+[8.5,"o","develop · b97b49b \u001b[2m(aktuell)\u001b[0m\n\n"]
+[11,"o","\u001b[2m▸ glab mr list …\n\u001b[0m"]
+[12.5,"o","\u001b[2m  keine offenen Merge Requests\u001b[0m\n\n"]
+[15,"o","\u001b[2m▸ Prod-Check …\n\u001b[0m"]
+[17,"o","\u001b[32m200\u001b[0m \u001b[2m(prod)\u001b[0m\n\n"]
+[20,"o","\u001b[2m▸ Bericht …\n\u001b[0m"]
+[22.5,"o","\u001b[32m✓\u001b[0m /tmp/herdr-talk/strapi.md\n\n"]
+[24.5,"o","\u001b[1m● \u001b[0m\u001b[2mDONE\n\u001b[0m"]

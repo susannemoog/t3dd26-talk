@@ -1,0 +1,10 @@
+{"version":2,"width":96,"height":20,"timestamp":1791971751,"env":{"SHELL":"/bin/zsh","TERM":"xterm-256color"},"title":"agent/t3"}
+[2.6,"o","\u001b[2m▸ git fetch --all …\n\u001b[0m"]
+[4,"o","develop · aktuell \u001b[2m(origin/develop)\u001b[0m\n\n"]
+[6,"o","\u001b[2m▸ glab mr list …\n\u001b[0m"]
+[7.5,"o","\u001b[2m  keine offenen Merge Requests\u001b[0m\n\n"]
+[10,"o","\u001b[2m▸ curl -s -o /dev/null -w '%{http_code}' …\n\u001b[0m"]
+[12,"o","\u001b[32m200\u001b[0m \u001b[2mhttps://demo-…/ (prod)\u001b[0m\n\n"]
+[16,"o","\u001b[2m▸ Bericht schreiben …\n\u001b[0m"]
+[19,"o","\u001b[32m✓\u001b[0m /tmp/herdr-talk/t3.md\n\n"]
+[21,"o","\u001b[1m● \u001b[0m\u001b[2mDONE\n\u001b[0m"]

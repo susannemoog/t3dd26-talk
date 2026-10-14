@@ -1,0 +1,11 @@
+{"version":2,"width":96,"height":20,"timestamp":1791971751,"env":{"SHELL":"/bin/zsh","TERM":"xterm-256color"},"title":"agent/fixer · wt-t3-viewhelper"}
+[12.8,"o","\u001b[2m▸ Diagnose …\n\u001b[0m"]
+[15.5,"o","\u001b[2m  YouTube Watch-URLs verbieten iframe-Embedding\u001b[0m\n"]
+[17,"o","\u001b[2m  Theme-Regel: theme:videoUrl normalisiert Watch/Short\u001b[0m\n\n"]
+[20,"o","\u001b[2m▸ Unit-Tests zuerst …\n\u001b[0m"]
+[23,"o","\u001b[35;1m✕\u001b[0m 3 von 12 Tests rot \u001b[2m(erwartetes Fehlverhalten)\u001b[0m\n\n"]
+[26,"o","\u001b[2m▸ Fix …\n\u001b[0m"]
+[29,"o","\u001b[32m~\u001b[0m VideoUrlViewHelper.php \u001b[2mWatch → youtube-nocookie-Embed\u001b[0m\n\n"]
+[33.5,"o","\u001b[32m✓\u001b[0m 12/12 Tests grün\n"]
+[35.5,"o","\u001b[32m✓\u001b[0m Video rendert in der Demo\n\n"]
+[38.5,"o","\u001b[1m● \u001b[0m\u001b[2mdone — Regel in die AGENTS.md übernommen\n\u001b[0m"]
