@@ -60,7 +60,7 @@ Untertitel: *Entwicklerarbeit in mehreren Projekten — orchestriert mit herdr*
 
 ## [SLIDE 9 — VIDEO 1: Agenten auf Worktrees] (14:30)
 
-Datei: `assets/videos/demo1-tui.mp4` (~64 Sek., echte herdr-TUI-Aufnahme, loop + Pause per Klick).
+Datei: `assets/videos/demo1-tui.mp4` (~52 Sek., echte herdr-TUI-Aufnahme, Light-Theme, loop-frei + Pause per Klick).
 
 > Video 1: Agenten auf Worktrees. Die echte herdr-TUI: ein Controller-Agent startet zwei Worker-Agenten im neuen Tab, je 50 % Breite.
 >
@@ -77,14 +77,14 @@ Datei: `assets/videos/demo1-tui.mp4` (~64 Sek., echte herdr-TUI-Aufnahme, loop +
 
 ## [SLIDE 11 — VIDEO 2: Die Update-Runde] (19:00)
 
-Datei: `assets/videos/demo2-tui.mp4` (~22 Sek., echte herdr-TUI-Aufnahme, loop + Pause per Klick).
+Datei: `assets/videos/demo2-tui.mp4` (~53 Sek., echte herdr-TUI-Aufnahme, Light-Theme, drei Worker parallel).
 
-> Video 2: Die wöchentliche Update-Runde. Die echte herdr-TUI: Control-Pane, rechts t3 und strapi als Agent-Panes.
+> Video 2: Die wöchentliche Update-Runde. Die echte herdr-TUI: ein Controller-Agent startet drei Worker (t3, strapi, payload) im separaten Tab, je ~1/3 Breite.
 >
-> 1. `herdr agent start` × 2 — die Agenten heißen nach dem Repo.
-> 2. Auftrag: *"Prüfe: git-Stand, offene MRs, Prod-URL. Bericht nach /tmp/herdr-talk/<repo>.md, antworte nur mit DONE."*
-> 3. Während die Agenten laufen: passiert in den Panes etwas — π-Badges, working-Zustände. Ich warte.
-> 4. Berichte: *"t3: 8 Commits behind, git pull nötig. strapi: keine MRs, Prod erreichbar."* Berichte in Dateien, Audit bei mir.
+> 1. Der Controller tippt live `herdr agent start` × 3 — die Worker erscheinen mit π-Badges.
+> 2. Tab-Wechsel auf den Repos-Tab: drei Panes, parallel.
+> 3. Jeder Worker prüft sein Repo: git-Stand, offene MRs, Prod-URL. Bericht nach /tmp/herdr-talk/<repo>.md.
+> 4. Am Ende: DONE vom Controller. Berichte in Dateien, Audit bei mir.
 
 ## [SLIDE 12 — Die Update-Runde in Zahlen] (21:00)
 
