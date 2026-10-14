@@ -60,7 +60,7 @@ Untertitel: *Entwicklerarbeit in mehreren Projekten — orchestriert mit herdr*
 
 ## [SLIDE 9 — VIDEO 1: Agenten auf Worktrees] (14:30)
 
-Datei: `assets/videos/demo1-tui.gif` (~40 Sek., echte herdr-TUI-Aufnahme).
+Datei: `assets/videos/demo1-tui.mp4` (~64 Sek., echte herdr-TUI-Aufnahme, loop + Pause per Klick).
 
 > Video 1: Agenten auf Worktrees. Die echte herdr-TUI: ein Controller-Agent startet zwei Worker-Agenten im neuen Tab, je 50 % Breite.
 >
@@ -77,7 +77,7 @@ Datei: `assets/videos/demo1-tui.gif` (~40 Sek., echte herdr-TUI-Aufnahme).
 
 ## [SLIDE 11 — VIDEO 2: Die Update-Runde] (19:00)
 
-Datei: `assets/videos/demo2-tui.gif` (~22 Sek., echte herdr-TUI-Aufnahme).
+Datei: `assets/videos/demo2-tui.mp4` (~22 Sek., echte herdr-TUI-Aufnahme, loop + Pause per Klick).
 
 > Video 2: Die wöchentliche Update-Runde. Die echte herdr-TUI: Control-Pane, rechts t3 und strapi als Agent-Panes.
 >

@@ -14,11 +14,11 @@
       --purple: #8C19F5;
       --magenta: #FF00FF;
       --lime: #AAFF00;
-      --cyan: #00AAFF;
+      --cyan: #0066CC;
       --bg: #ffffff;
       --text: #000050;
-      --dim: rgba(0, 0, 80, 0.45);
-      --border: rgba(0, 0, 80, 0.14);
+      --dim: rgba(0, 0, 80, 0.62);
+      --border: rgba(0, 0, 80, 0.45); /* WCAG 1.4.11: 3.22:1 gegen weiss (vorher 0.14 -> 1.37:1) */
     }
 
     html, body, .reveal-viewport { background: var(--bg); }
@@ -76,10 +76,10 @@
       font-family: 'Menlo', monospace; font-size: 0.65em; font-weight: 700;
       padding: 0.4em 1em; border-radius: 999px;
     }
-    .pill-working { background: rgba(255,0,255,0.08); color: #b0008a; border: 1.5px solid rgba(255,0,255,0.35); }
-    .pill-idle    { background: rgba(0,170,255,0.08); color: #0077bb; border: 1.5px solid rgba(0,170,255,0.35); }
-    .pill-blocked { background: rgba(255,120,0,0.10); color: #c05600; border: 1.5px solid rgba(255,120,0,0.4); }
-    .pill-done    { background: rgba(80,160,0,0.10);  color: #4a8000; border: 1.5px solid rgba(80,160,0,0.4); }
+    .pill-working { background: rgba(255,0,255,0.08); color: #b0008a; border: 1.5px solid #b0008a; }
+    .pill-idle    { background: rgba(0,170,255,0.08); color: #005B8F; border: 1.5px solid #005B8F; }
+    .pill-blocked { background: rgba(255,120,0,0.10); color: #A34400; border: 1.5px solid #A34400; }
+    .pill-done    { background: rgba(80,160,0,0.10);  color: #407400; border: 1.5px solid #407400; }
 
     /* API commands */
     .api-list { margin: 0.3em 0; }
@@ -104,7 +104,7 @@
     .vs { display: flex; gap: 40px; margin-top: 0.4em; }
     .vs > div { flex: 1; font-size: 0.78em; }
     .vs .vs-head { font-weight: 800; font-size: 1.15em; margin-bottom: 0.4em; }
-    .vs .sub { color: var(--magenta); }
+    .vs .sub { color: #B800B8; }
     .vs .hrd { color: var(--purple); }
 
     /* Stats */
@@ -123,6 +123,7 @@
     .syslist .dim { font-size: 0.9em; }
 
     /* Dark slides */
+    .dark-slide { background: var(--navy); }
     .dark-slide, .dark-slide h2, .dark-slide p { color: #fff; }
     .dark-slide .accent { color: var(--lime); }
     .dark-slide blockquote { border: none; margin: 0; padding: 0; }
@@ -311,7 +312,7 @@
     <section id="video1">
       <h3>Video 1</h3>
       <h2>Agenten auf Worktrees</h2>
-      <img class="demo-video" src="assets/videos/demo1-tui.gif" alt="herdr-TUI: zwei Agenten arbeiten parallel in Worktrees">
+      <video class="demo-video" src="assets/videos/demo1-tui.mp4" autoplay loop muted controls playsinline></video>
       <aside class="notes">
         Video 1: Agenten auf Worktrees. Links die Steuer-Session, rechts zwei Agent-Panes.
 
@@ -346,7 +347,7 @@
     <section id="video2">
       <h3>Video 2</h3>
       <h2>Die Update-Runde: 9 Repos parallel</h2>
-      <img class="demo-video" src="assets/videos/demo2-tui.gif" alt="herdr-TUI: Update-Runde, zwei Agenten parallel">
+      <video class="demo-video" src="assets/videos/demo2-tui.mp4" autoplay loop muted controls playsinline></video>
       <aside class="notes">
         Video 2: Die wöchentliche Update-Runde. Links die Steuer-Session, rechts drei Agent-Panes mit Lebenszyklus.
 
