@@ -66,8 +66,8 @@
 
     /* Keyword-Bullets */
     .kw { font-size: 0.85em; }
-    .kw li { padding: 0.35em 0 0.35em 1.4em; position: relative; }
-    .kw li::before { content: '—'; color: var(--purple); position: absolute; left: 0; }
+    .kw li { padding: 0.35em 0 0.35em 1.4em; text-indent: -1.4em; }
+    .kw li::before { content: '—'; color: var(--purple); display: inline-block; width: 1.4em; text-indent: 0; }
     .kw strong { font-weight: 700; }
 
     /* Lifecycle pills */
@@ -154,7 +154,7 @@
     <div class="slides">
 
     <!-- 1 · Titel -->
-    <section id="title" data-background-image="../t3dd2026/assets/bg/bg9.png" data-background-size="cover">
+    <section id="title">
       <h1>Ein Agent ist nett.<br>Neun sind <span class="accent">ein Team.</span></h1>
       <p class="subtitle">Entwicklerarbeit in mehreren Projekten — orchestriert mit herdr</p>
       <div class="meta"><span>Susi Moog</span><span>TYPO3camp Berlin · 30 Minuten</span></div>
@@ -429,7 +429,7 @@
     </section>
 
     <!-- 16 · Ende -->
-    <section id="ende" class="slide-fazit dark-slide" data-background-image="../t3dd2026/assets/bg/bg12.png" data-background-size="cover">
+    <section id="ende" class="slide-fazit dark-slide">
       <p class="line"><strong>herdr</strong> orchestriert.</p>
       <p class="line"><strong>MCP</strong> macht wirksam.</p>
       <p class="line"><span class="accent">Die Entscheidung bleibt bei euch.</span></p>
