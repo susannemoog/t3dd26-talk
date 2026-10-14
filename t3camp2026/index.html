@@ -446,7 +446,7 @@
 
 <script src="vendor/reveal.js/dist/reveal.js"></script>
 <script src="vendor/reveal.js/plugin/notes/notes.js"></script>
-<script src="vendor/asciinema/bundle/asciinema-player.min.js"></script>
+<script src="assets/js/cast-player.js"></script>
 <script>
   Reveal.initialize({
     hash: true,
@@ -464,9 +464,8 @@
   });
 
   // Terminal-Demos als asciinema-Casts (echte herdr-Läufe, 110×34)
-  var demoOpts = { cols: 110, rows: 34, fit: 'width', autoPlay: false };
-  AsciinemaPlayer.create('assets/casts/demo1-herdr-worktree.cast', document.getElementById('demo1-player'), demoOpts);
-  AsciinemaPlayer.create('assets/casts/demo2-herdr-round.cast', document.getElementById('demo2-player'), demoOpts);
+  CastPlayer.create('assets/casts/demo1-herdr-worktree.cast', document.getElementById('demo1-player'));
+  CastPlayer.create('assets/casts/demo2-herdr-round.cast', document.getElementById('demo2-player'));
 </script>
 </body>
 </html>
