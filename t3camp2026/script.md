@@ -60,14 +60,14 @@ Untertitel: *Entwicklerarbeit in mehreren Projekten — orchestriert mit herdr*
 
 ## [SLIDE 9 — VIDEO 1: Agenten auf Worktrees] (14:30)
 
-Datei: `assets/videos/demo1-tui.gif` (~58 Sek., echte herdr-TUI-Aufnahme).
+Datei: `assets/videos/demo1-tui.gif` (~40 Sek., echte herdr-TUI-Aufnahme).
 
-> Video 1: Agenten auf Worktrees. Die echte herdr-TUI: links das Control-Pane, rechts zwei Agent-Panes mit π-Badges.
+> Video 1: Agenten auf Worktrees. Die echte herdr-TUI: ein Controller-Agent startet zwei Worker-Agenten im neuen Tab, je 50 % Breite.
 >
-> 1. `git worktree add` × 2 — wt-demo-a11y, wt-demo-script, eigener Branch je Agent, getippt im Control-Pane.
-> 2. `herdr agent start` × 2 (pi), je Worktree-Pane.
-> 3. Agent A: Kontraste gegen WCAG 2.1 AA prüfen und fixen. Agent B: script.md enger auf mich anpassen. Parallel, die Panes laufen live.
-> 4. Am Ende: die Zusammenfassungen in den Agent-Panes, `done`-Badges. Zwei Branches, eine Codebasis, null Konflikt.
+> 1. Der Controller-Agent tippt live `herdr agent start` × 2 — die Worker erscheinen mit π-Badges.
+> 2. Tab-Wechsel auf den Agents-Tab: zwei Panes, je 50 %, daneben der Controller.
+> 3. Agent A: Kontraste gegen WCAG 2.1 AA prüfen und fixen. Agent B: script.md enger auf mich anpassen. Parallel, live.
+> 4. Am Ende: ✓✓ — beide done. Zwei Branches, eine Codebasis, null Konflikt.
 
 ## [SLIDE 10 — Neun Projekte, neun Agenten] (17:00)
 
