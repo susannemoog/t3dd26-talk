@@ -73,7 +73,21 @@ Datei: `assets/videos/demo1-tui.mp4` (~52 Sek., echte herdr-TUI-Aufnahme, Light-
 
 > Die Landschaft: neun Projekte. Ich habe viele CMS-Demos aufgebaut — das geht über KI ganz gut. Sieben von ihnen haben saubere REST- oder GraphQL-APIs — da ruft der Agent den Endpunkt direkt auf, MCP ist hier Komfort. Die API-basierten Systeme haben meist auch eine sehr gut maschinenlesbare Doku dazu.
 >
-> Anders bei TYPO3: Die Daten liegen hinter TCA-Definitionen, der DataHandler validiert, was reingeht. Dort ist der typo3-dev-companion der Unterschied — TCA-Schema, Datensätze, Konventionen, Forge und Gerrit als Werkzeuge. Wenn die APIs fehlen, hilft so etwas wie der Companion für Schemata. **herdr orchestriert die Agenten — MCP macht sie wirksam.**
+> Anders bei TYPO3 — dazu die nächsten beiden Folien.
+
+## [SLIDE 10a — Warum TYPO3 anders ist] (17:45)
+
+> Warum der Sonderfall: Die Daten liegen nicht hinter einem JSON-Endpunkt, sondern hinter TCA-Definitionen. Der DataHandler validiert, was reingeht — Tabelle, PID, Sprache, Versionierung. Und die Konventionen stehen im Core: Translation-Domains, TCA-Formen, Changelog-Regeln.
+>
+> Ein reiner API-Agent weiß davon nichts. Er bräuchte Schemata, Datensätze, Regeln.
+
+## [SLIDE 10b — Der Companion in Aktion] (18:30)
+
+> Was der typo3-dev-companion dem Agenten konkret gibt:
+>
+> *typo3_schema_lookup* listet die Spalten, die TYPO3 aus der TCA ableitet — das DDL-Schema hinter der Definition. *typo3_record_lookup* liest echte Datensätze der Demo-Landschaft. *typo3_translation_domain_lookup* berechnet die Label-Referenz, die das Core selbst anwendet. Der *Changelog-Lookup* sagt, was eine Version deprecated hat. Und *Forge und Gerrit* zeigen offene Issues und Patches, bevor man einen Patch schreibt.
+>
+> **herdr orchestriert die Agenten — MCP macht sie wirksam.**
 
 ## [SLIDE 11 — VIDEO 2: Die Update-Runde] (19:00)
 
@@ -130,14 +144,15 @@ Datei: `assets/videos/demo2-tui.mp4` (~48 Sek., echte herdr-TUI-Aufnahme, Light-
 | herdr: Werkzeug, Zustände, API | 5 | 9 |
 | Abgrenzung, Worktrees, Features | 5,5 | 14,5 |
 | Video 1 | 2,5 | 17 |
-| Neun Projekte + Video 2 + Zahlen | 5,5 | 22,5 |
-| Workflow + Stolpersteine | 4 | 26,5 |
-| Drei Sätze + Ende | 3,5 | 30 |
+| Neun Projekte + TYPO3-Sonderfall + Companion | 2,5 | 19,5 |
+| Video 2 + Zahlen | 4 | 23,5 |
+| Workflow + Stolpersteine | 4 | 27,5 |
+| Drei Sätze + Ende | 2,5 | 30 |
 
 ## Checkliste (Camp-Morgen)
 
 | # | Was | Stand |
 |---|---|---|
-| 1 | Beide Casts prüfen: `assets/casts/demo1-herdr-worktree.cast`, `assets/casts/demo2-herdr-round.cast` (asciinema-Player im Deck) | ☐ |
-| 2 | Wiedergabe im Browser testen (asciinema-CLI als Reserve: `asciinema play`) | ☐ |
+| 1 | Beide Videos prüfen: `assets/videos/demo1-tui.mp4`, `assets/videos/demo2-tui.mp4` | ☐ |
+| 2 | Wiedergabe im Browser testen (Pause per Leertaste zum Erzählen) | ☐ |
 | 3 | Beamer-HDMI-Adapter, zweiter Monitor für Speaker Notes | ☐ |

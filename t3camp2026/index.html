@@ -329,7 +329,7 @@
       <h3>Die Landschaft</h3>
       <h2>Neun Projekte, neun Agenten</h2>
       <ul class="syslist">
-        <li><span class="name">TYPO3</span><span class="dim">MCP: typo3-dev-companion — TCA, Records, Forge</span></li>
+        <li><span class="name">TYPO3</span><span class="dim">hinter TCA — MCP: typo3-dev-companion</span></li>
         <li><span class="name">Strapi</span><span class="dim">REST-API, maschinenlesbare Doku</span></li>
         <li><span class="name">Payload</span><span class="dim">REST/GraphQL, OpenAPI-Schema</span></li>
         <li><span class="name">Pimcore</span><span class="dim">REST-API</span></li>
@@ -338,9 +338,45 @@
         <li><span class="name">Magnolia</span><span class="dim">REST-API</span></li>
       </ul>
       <aside class="notes">
-        Die Landschaft: neun Projekte. Sieben von ihnen haben saubere REST- oder GraphQL-APIs — da ruft der Agent den Endpunkt direkt auf, MCP ist hier Komfort.
+        Die Landschaft: neun Projekte. Ich habe viele CMS-Demos aufgebaut — das geht über KI ganz gut. Sieben von ihnen haben saubere REST- oder GraphQL-APIs — da ruft der Agent den Endpunkt direkt auf, MCP ist hier Komfort. Die API-basierten Systeme haben meist auch eine sehr gut maschinenlesbare Doku dazu.
 
-        Anders bei TYPO3: Die Daten liegen hinter TCA-Definitionen, der DataHandler validiert, was reingeht. Dort ist der typo3-dev-companion der Unterschied — TCA-Schema, Datensätze, Konventionen, Forge und Gerrit als Werkzeuge. herdr orchestriert die Agenten — MCP macht sie wirksam.
+        Anders bei TYPO3 — dazu die nächsten beiden Folien.
+      </aside>
+    </section>
+
+    <!-- 10a · Warum TYPO3 anders ist -->
+    <section id="typo3-anders">
+      <h3>Der Sonderfall</h3>
+      <h2>Warum TYPO3 anders ist</h2>
+      <ul class="kw">
+        <li><strong>Die Daten liegen hinter TCA-Definitionen</strong> <span class="dim">— nicht hinter einem JSON-Endpunkt</span></li>
+        <li><strong>Der DataHandler validiert, was reingeht</strong> <span class="dim">— Tabelle, PID, Sprache, Versionierung</span></li>
+        <li><strong>Die Konventionen stehen im Core</strong> <span class="dim">— Translation-Domains, TCA-Formen, Changelog-Regeln</span></li>
+      </ul>
+      <p class="dim mono" style="font-size:0.62em;margin-top:0.6em">Ein reiner API-Agent weiß davon nichts — er bräuchte Schemata, Datensätze, Regeln.</p>
+      <aside class="notes">
+        Warum ist TYPO3 der Sonderfall? Die Daten liegen nicht hinter einem JSON-Endpunkt, sondern hinter TCA-Definitionen. Der DataHandler validiert, was reingeht — Tabelle, PID, Sprache, Versionierung. Und die Konventionen stehen im Core: Translation-Domains, TCA-Formen, Changelog-Regeln.
+
+        Ein reiner API-Agent weiß davon nichts. Er bräuchte Schemata, Datensätze, Regeln — genau das legt der Companion an.
+      </aside>
+    </section>
+
+    <!-- 10b · Der Companion in Aktion -->
+    <section id="companion">
+      <h3>MCP in Aktion</h3>
+      <h2>typo3-dev-companion — was er dem Agenten gibt</h2>
+      <ul class="api-list">
+        <li>typo3_schema_lookup tt_content &nbsp;→&nbsp; Spalten, Typen, Defaults — das DDL-Schema hinter der TCA</li>
+        <li>typo3_record_lookup {"pid": 90020} &nbsp;→&nbsp; echte Datensätze der Demo-Landschaft</li>
+        <li>typo3_translation_domain_lookup EXT:... &nbsp;→&nbsp; die Label-Referenz, die das Core selbst anwendet</li>
+        <li>typo3_changelog_lookup "12" &nbsp;→&nbsp; was eine Version deprecated — die Regeln im Text</li>
+        <li>typo3_forge_lookup / typo3_gerrit_lookup &nbsp;→&nbsp; offene Issues und Patches, bevor man schreibt</li>
+      </ul>
+      <p class="dim mono" style="font-size:0.62em;margin-top:0.6em">herdr orchestriert die Agenten — MCP macht sie wirksam.</p>
+      <aside class="notes">
+        Was der Companion dem Agenten konkret gibt: typo3_schema_lookup listet die Spalten, die TYPO3 aus der TCA ableitet — das DDL-Schema hinter der Definition. typo3_record_lookup liest echte Datensätze der Demo-Landschaft. typo3_translation_domain_lookup berechnet die Label-Referenz, die das Core selbst anwendet. Der Changelog-Lookup sagt, was eine Version deprecated hat. Und Forge und Gerrit zeigen offene Issues und Patches, bevor man einen Patch schreibt.
+
+        herdr orchestriert die Agenten — MCP macht sie wirksam.
       </aside>
     </section>
 
