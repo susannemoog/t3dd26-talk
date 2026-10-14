@@ -311,7 +311,7 @@
     <section id="video1">
       <h3>Video 1</h3>
       <h2>Agenten auf Worktrees</h2>
-      <div id="demo1-player" class="demo-video"></div>
+      <img class="demo-video" src="assets/videos/demo1-tui.gif" alt="herdr-TUI: zwei Agenten arbeiten parallel in Worktrees">
       <aside class="notes">
         Video 1: Agenten auf Worktrees. Links die Steuer-Session, rechts zwei Agent-Panes.
 
@@ -346,7 +346,7 @@
     <section id="video2">
       <h3>Video 2</h3>
       <h2>Die Update-Runde: 9 Repos parallel</h2>
-      <div id="demo2-player" class="demo-video"></div>
+      <img class="demo-video" src="assets/videos/demo2-tui.gif" alt="herdr-TUI: Update-Runde, zwei Agenten parallel">
       <aside class="notes">
         Video 2: Die wöchentliche Update-Runde. Links die Steuer-Session, rechts drei Agent-Panes mit Lebenszyklus.
 
@@ -446,8 +446,6 @@
 
 <script src="vendor/reveal.js/dist/reveal.js"></script>
 <script src="vendor/reveal.js/plugin/notes/notes.js"></script>
-<script src="assets/js/cast-timeline.js"></script>
-<script src="assets/js/cast-player.js"></script>
 <script>
   Reveal.initialize({
     hash: true,
@@ -463,10 +461,6 @@
     center: true,
     plugins: [ RevealNotes ],
   });
-
-  // Terminal-Demos als asciinema-Casts (echte herdr-Läufe, 110×34)
-  CastPlayer.create('assets/casts/demo1-herdr-worktree.cast', document.getElementById('demo1-player'));
-  CastPlayer.create('assets/casts/demo2-herdr-round.cast', document.getElementById('demo2-player'));
 </script>
 </body>
 </html>

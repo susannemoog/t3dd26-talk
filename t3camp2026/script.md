@@ -60,14 +60,14 @@ Untertitel: *Entwicklerarbeit in mehreren Projekten — orchestriert mit herdr*
 
 ## [SLIDE 9 — VIDEO 1: Agenten auf Worktrees] (14:30)
 
-Datei: `assets/casts/demo1-herdr-worktree.cast` (asciinema, ~75 Sek., 110×34).
+Datei: `assets/videos/demo1-tui.gif` (~58 Sek., echte herdr-TUI-Aufnahme).
 
-> Video 1: Agenten auf Worktrees. Eine Steuer-Session, zwei Worktree-Workspaces.
+> Video 1: Agenten auf Worktrees. Die echte herdr-TUI: links das Control-Pane, rechts zwei Agent-Panes mit π-Badges.
 >
-> 1. `herdr worktree create` × 2 — wt-talk-a11y, wt-talk-script, eigener Branch je Agent.
-> 2. `herdr agent start` × 2 (pi), je Worktree-Root-Pane.
-> 3. Agent A: Kontraste beider Decks gegen WCAG 2.1 AA prüfen und fixen. Agent B: script.md enger auf mich anpassen.
-> 4. `agent read` zeigt die Zusammenfassungen, `git status` in beiden Worktrees: zwei Branches, eine Codebasis, null Konflikt.
+> 1. `git worktree add` × 2 — wt-demo-a11y, wt-demo-script, eigener Branch je Agent, getippt im Control-Pane.
+> 2. `herdr agent start` × 2 (pi), je Worktree-Pane.
+> 3. Agent A: Kontraste gegen WCAG 2.1 AA prüfen und fixen. Agent B: script.md enger auf mich anpassen. Parallel, die Panes laufen live.
+> 4. Am Ende: die Zusammenfassungen in den Agent-Panes, `done`-Badges. Zwei Branches, eine Codebasis, null Konflikt.
 
 ## [SLIDE 10 — Neun Projekte, neun Agenten] (17:00)
 
@@ -77,15 +77,14 @@ Datei: `assets/casts/demo1-herdr-worktree.cast` (asciinema, ~75 Sek., 110×34).
 
 ## [SLIDE 11 — VIDEO 2: Die Update-Runde] (19:00)
 
-Datei: `assets/casts/demo2-herdr-round.cast` (asciinema, ~7 Sek., kompakt geschnitten — die Wartezeit ist der eine lange Beat).
+Datei: `assets/videos/demo2-tui.gif` (~22 Sek., echte herdr-TUI-Aufnahme).
 
-> Video 2: Die wöchentliche Update-Runde. Eine Steuer-Session, zwei Agent-Panes mit Lebenszyklus.
+> Video 2: Die wöchentliche Update-Runde. Die echte herdr-TUI: Control-Pane, rechts t3 und strapi als Agent-Panes.
 >
-> 1. `herdr agent rename` — die Agenten heißen nach dem Repo: t3, strapi.
-> 2. Auftrag: *"Prüfe: git-Stand, offene MRs, Prod-URL. Ergebnis nach /tmp/herdr-talk/<repo>.md, antworte nur mit DONE."*
-> 3. Während die Agenten laufen: passiert erstmal nichts Sichtbares. Ich warte.
-> 4. Berichte: *"t3: 8 Commits behind, keine MRs, Prod 401 (Auth). strapi: Renovate-Dep-Updates, keine MRs, Prod erreichbar."*
-> 5. Der Punkt: Berichte in Dateien, nicht Pane-Output. Audit bei mir.
+> 1. `herdr agent start` × 2 — die Agenten heißen nach dem Repo.
+> 2. Auftrag: *"Prüfe: git-Stand, offene MRs, Prod-URL. Bericht nach /tmp/herdr-talk/<repo>.md, antworte nur mit DONE."*
+> 3. Während die Agenten laufen: passiert in den Panes etwas — π-Badges, working-Zustände. Ich warte.
+> 4. Berichte: *"t3: 8 Commits behind, git pull nötig. strapi: keine MRs, Prod erreichbar."* Berichte in Dateien, Audit bei mir.
 
 ## [SLIDE 12 — Die Update-Runde in Zahlen] (21:00)
 
