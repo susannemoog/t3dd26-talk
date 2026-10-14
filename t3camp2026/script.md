@@ -71,9 +71,9 @@ Datei: `assets/videos/demo1-tui.mp4` (~52 Sek., echte herdr-TUI-Aufnahme, Light-
 
 ## [SLIDE 10 — Neun Projekte, neun Agenten] (17:00)
 
-> Die Landschaft: neun Projekte. Sieben von ihnen haben saubere REST- oder GraphQL-APIs — da ruft der Agent den Endpunkt direkt auf, MCP ist hier Komfort.
+> Die Landschaft: neun Projekte. Ich habe viele CMS-Demos aufgebaut — das geht über KI ganz gut. Sieben von ihnen haben saubere REST- oder GraphQL-APIs — da ruft der Agent den Endpunkt direkt auf, MCP ist hier Komfort. Die API-basierten Systeme haben meist auch eine sehr gut maschinenlesbare Doku dazu.
 >
-> Anders bei TYPO3: Die Daten liegen hinter TCA-Definitionen, der DataHandler validiert, was reingeht. Dort ist der typo3-dev-companion der Unterschied — TCA-Schema, Datensätze, Konventionen, Forge und Gerrit als Werkzeuge. **herdr orchestriert die Agenten — MCP macht sie wirksam.**
+> Anders bei TYPO3: Die Daten liegen hinter TCA-Definitionen, der DataHandler validiert, was reingeht. Dort ist der typo3-dev-companion der Unterschied — TCA-Schema, Datensätze, Konventionen, Forge und Gerrit als Werkzeuge. Wenn die APIs fehlen, hilft so etwas wie der Companion für Schemata. **herdr orchestriert die Agenten — MCP macht sie wirksam.**
 
 ## [SLIDE 11 — VIDEO 2: Die Update-Runde] (19:00)
 
