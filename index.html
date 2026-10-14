@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sebastian Moog — Talks</title>
+  <style>
+    /* ── Brand tokens (taken from the decks) ───────────────────── */
+    :root {
+      --navy:    #000050;
+      --purple:  #8C19F5;
+      --magenta: #FF00FF;
+      --lime:    #AAFF00;
+      --cyan:    #00AAFF;
+      --bg:      #ffffff;
+      --text:    #000050;
+      --dim:     rgba(0, 0, 80, 0.42);
+      --border:  rgba(0, 0, 80, 0.14);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Faktum', 'Faktum Medium', 'Aptos', system-ui, sans-serif;
+      line-height: 1.6;
+    }
+
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .wrap {
+      max-width: 720px;
+      width: 100%;
+      padding: 96px 32px 96px;
+    }
+
+    h1 {
+      font-family: 'Aptos Display', system-ui, -apple-system, sans-serif;
+      font-size: 2.6rem;
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      margin: 0 0 0.3em;
+    }
+
+    .kicker {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--purple);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin: 0 0 1.2em;
+    }
+
+    .intro {
+      color: var(--dim);
+      font-size: 1.05rem;
+      margin: 0 0 3.5em;
+      max-width: 34em;
+    }
+
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5em;
+    }
+
+    .card {
+      display: block;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.6em 1.8em;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+    }
+
+    .card:hover,
+    .card:focus-visible {
+      border-color: var(--purple);
+      box-shadow: 0 4px 24px rgba(140, 25, 245, 0.12);
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    .card h2 {
+      font-family: 'Aptos Display', system-ui, -apple-system, sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.2em;
+    }
+
+    .card .meta {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--purple);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin: 0 0 0.6em;
+    }
+
+    .card p {
+      color: var(--dim);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    .lang {
+      float: right;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--dim);
+      letter-spacing: 0.1em;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.1em 0.7em;
+    }
+
+    footer {
+      margin-top: 4em;
+      font-size: 0.85rem;
+      color: var(--dim);
+    }
+
+    footer a {
+      color: var(--purple);
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 560px) {
+      .wrap { padding: 56px 20px 56px; }
+      h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <p class="kicker">Talks &amp; Slides</p>
+    <h1>Sebastian Moog</h1>
+    <p class="intro">
+      Vorträge rund um TYPO3, Content-Management und Agenten im
+      Entwickleralltag — die Folien zu jedem Talk gibt es hier.
+    </p>
+
+    <nav class="cards">
+      <a class="card" href="t3dd2026/index.html">
+        <span class="lang">EN</span>
+        <p class="meta">TYPO3 Developer Days 2026</p>
+        <h2>Same Content, Different CMS — Who Does It Better?</h2>
+        <p>One simple editorial task, repeated across five CMS (Payload, Strapi,
+        Pimcore, Storyblok, TYPO3) — a hands-on comparison of what each system
+        makes easy and what it makes painful.</p>
+      </a>
+
+      <a class="card" href="t3camp2026/index.html">
+        <span class="lang">DE</span>
+        <p class="meta">TYPO3camp Berlin 2026</p>
+        <h2>Ein Agent ist nett. Neun sind ein Team.</h2>
+        <p>Wie sich Coding-Agenten parallel im Projektalltag orchestrieren
+        lassen — von der Aufgabenverteilung bis zum sauberen Merge.</p>
+      </a>
+    </nav>
+
+    <footer>
+      Slides hosted on GitHub Pages ·
+      <a href="https://github.com/teamneusta/talk">teamneusta/talk</a>
+    </footer>
+  </main>
+</body>
+</html>
