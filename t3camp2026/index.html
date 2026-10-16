@@ -100,6 +100,14 @@
     .wt-base .wt-head { font-family: 'Menlo', monospace; font-weight: 700; margin-bottom: 0.4em; }
     .wt-base .dim { color: rgba(255,255,255,0.55); }
 
+    /* Ausblick: Quellen -> MCP -> Worklog */
+    .flow { display: flex; align-items: stretch; gap: 14px; margin-top: 0.6em; }
+    .flow-sources { flex: 1.3; display: flex; flex-direction: column; gap: 10px; }
+    .flow .wt-box { flex: 1; }
+    .flow-arrow { align-self: center; font-size: 1.4em; color: var(--purple); }
+    .flow .wt-base { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .flow-out { flex: 0.9; display: flex; flex-direction: column; justify-content: center; }
+
     /* Comparison */
     .vs { display: flex; gap: 40px; margin-top: 0.4em; }
     .vs > div { flex: 1; font-size: 0.78em; }
@@ -134,12 +142,31 @@
     .slide-fazit .line + .line { margin-top: 0.45em; }
     .slide-fazit .line strong { color: var(--lime); }
 
-    /* Video */
+    /* Fusszeile unter Listen */
+    .footnote { font-size: 0.75em; color: var(--dim); margin-top: 0.6em; }
+    .footnote.mono { font-size: 0.68em; }
+    .api-list.wide li { font-size: 0.72em; }
+
+    /* Video: Folie fast vollflaechig, damit die TUI auf dem Beamer lesbar bleibt */
+    .reveal .slides > section.video-slide { padding: 18px 40px; }
+    .video-slide h3 { margin-bottom: 0.4em; }
     .demo-video {
-      width: 100%; max-width: none; max-height: 480px;
-      object-fit: contain; margin-top: 8px;
+      display: block; width: 100%; max-width: none; max-height: 630px;
+      object-fit: contain; margin: 0 auto;
       border-radius: 10px; box-shadow: 0 6px 24px rgba(0,0,80,0.2); background: #000;
     }
+
+    /* Endfolie: drei Schritte */
+    .dark-slide h3 { color: var(--lime); }
+    .steps { list-style: none; margin: 0.8em 0 0; padding: 0; }
+    .reveal .steps li { display: flex; gap: 0.8em; align-items: baseline; padding: 0.4em 0; color: #fff; font-size: 0.9em; }
+    .steps strong { color: #fff; }
+    .step-num {
+      flex: 0 0 1.6em; height: 1.6em; line-height: 1.6em; text-align: center; border-radius: 50%;
+      background: var(--lime); color: var(--navy); font-weight: 900; font-size: 0.85em;
+    }
+    .step-dim { color: rgba(255,255,255,0.75); }
+    .end-contact { font-size: 0.7em; color: rgba(255,255,255,0.85) !important; margin-top: 1.6em; }
 
     /* End */
     .logo { height: 44px; margin-bottom: 1.4em; }
@@ -161,7 +188,9 @@
       <p class="subtitle">Entwicklerarbeit in mehreren Projekten — orchestriert mit herdr</p>
       <div class="meta"><span>Susi Moog</span><span>TYPO3camp Berlin · 30 Minuten</span></div>
       <aside class="notes">
-        Guten Morgen! Ich bin Susi, Entwicklerin bei neusta. Ich arbeite gleichzeitig in neun Repositories — eine Demo-Landschaft mit TYPO3, Strapi, Payload, Pimcore, Storyblok, Contentful, Magnolia. Neben der eigentlichen Arbeit stapeln sich dort Aufgaben, die in kein Sprint-Ticket passen: Scaffolds, MR-Reviews, Update-Tests, Seeder, CI. Diese Session ist die Geschichte, wie ich diesen Teil des Jobs parallelisiert habe.
+        Hallo zusammen! Freitag, 18 Uhr: neun Repos, eine Update-Runde. Früher hat mich das eine Stunde gekostet — nach Feierabend. Heute sind es elf Minuten, und davon bin ich viereinhalb aktiv. Wie das geht und wo es schiefgeht, zeige ich euch in den nächsten zwanzig Minuten.
+
+        Ich bin Susi, Entwicklerin bei neusta. Ich arbeite gleichzeitig in neun Repositories — eine Demo-Landschaft mit TYPO3, Strapi, Payload, Pimcore, Storyblok, Contentful und Magnolia. Daneben stapeln sich Aufgaben, die in kein Sprint-Ticket passen. Seit etwa einem halben Jahr arbeite ich dafür mit herdr — und diese Session ist die Geschichte, wie ich diesen Teil meines Jobs parallelisiert habe.
       </aside>
     </section>
 
@@ -171,15 +200,15 @@
       <h2>Neun Projekte, ein Backlog</h2>
       <ul class="kw">
         <li><strong>MR-Reviews</strong> — <span class="dim">3 offen</span></li>
-        <li><strong>Composer-Updates</strong> — <span class="dim">testen, mergen</span></li>
+        <li><strong>Composer-Updates</strong> — <span class="dim">4 testen, mergen</span></li>
         <li><strong>Projekt-Scaffolds</strong> — <span class="dim">mit CI</span></li>
         <li><strong>Content-Strukturen &amp; Seeder</strong> — <span class="dim">TCA, Templates</span></li>
-        <li><strong>wöchentliche Update-Runde</strong> — <span class="dim">9 Repos</span></li>
+        <li><strong>wöchentliche Update-Runde</strong> — <span class="dim">9 Repos, freitags</span></li>
       </ul>
       <aside class="notes">
-        Die Ausgangslage: neun Projekte, und neben der eigentlichen Arbeit ein Backlog. Drei offene MR-Reviews. Composer-Updates, die getestet werden wollen. Projekt-Scaffolds mit CI. Content-Strukturen und Seeder für die Demos. Und wöchentlich die Update-Runde über alle neun Repos.
+        Am Montag stand bei mir konkret auf der Liste: drei offene MR-Reviews, vier Composer-Updates, die ich testen will, Projekt-Scaffolds mit CI, Content-Strukturen und Seeder für die Demos. Und freitags die Update-Runde über alle neun Repos.
 
-        Das ist der Teil des Jobs, der nie fertig wird — weil er sequentiell ist und die Zeit fehlt.
+        Das ist der Teil meines Jobs, der nie fertig wurde — weil ich ihn nacheinander abgearbeitet habe.
       </aside>
     </section>
 
@@ -189,13 +218,16 @@
       <h2>herdr — ein Terminal-Workspace-Manager</h2>
       <ul class="kw">
         <li><strong>Workspaces → Tabs → Panes</strong></li>
-        <li><strong>erkennt Coding-Agenten</strong> <span class="dim">— 20+ Typen: pi, claude, codex, gemini …</span></li>
+        <li><strong>erkennt Coding-Agenten</strong> <span class="dim">— 20+ Typen: claude, codex, gemini, pi …</span></li>
         <li><strong>Lebenszyklus als API</strong> <span class="dim">— nicht Screen-Scraping</span></li>
       </ul>
+      <p class="footnote mono">herdr.dev</p>
       <aside class="notes">
-        Das Werkzeug heißt herdr: ein Terminal-Workspace-Manager. Terminals in einer Struktur — Workspaces, Tabs, Panes. Und der entscheidende Teil: herdr erkennt Coding-Agenten. Über zwanzig Typen — pi, claude, codex, gemini, cursor. Pro Pane ein anderer möglich.
+        Mein Werkzeug dafür ist herdr, von herdr.dev: ein Terminal-Workspace-Manager. Terminals in einer Struktur — Workspaces, Tabs, Panes. Der entscheidende Teil: herdr erkennt Coding-Agenten. Über zwanzig Typen — Claude Code, Codex, Gemini, Cursor und pi, ein schlanker Coding-Agent fürs Terminal. Pro Pane ein anderer; bei mir laufen pi, claude und codex im Wechsel.
 
-        "Erkennt" heißt: Der Agent ist kein anonymer Prozess in einem Terminal, sondern ein Objekt mit Namen, Zustand und Schnittstelle. Ohne diese Erkennung wäre Orchestrierung Screen-Scraping.
+        „Erkennt“ heißt: Der Agent ist kein anonymer Prozess, sondern ein Objekt mit Namen, Zustand und Schnittstelle. Vorher habe ich Agenten-Ausgaben per Hand aus dem Terminal gelesen — genau das Screen-Scraping, das ich loswerden wollte.
+
+        Merkt euch zwei Wörter für heute: orchestrieren und wirksam machen. Das erste ist herdr. Das zweite kommt beim TYPO3-Teil.
       </aside>
     </section>
 
@@ -210,13 +242,14 @@
         <span class="pill pill-done">done</span>
       </div>
       <ul class="kw" style="margin-top:0.5em">
+        <li><span class="mono">idle</span> <span class="dim">→ wartet auf den nächsten Auftrag</span></li>
         <li><span class="mono">blocked</span> <span class="dim">→ Agent fragt — ich entscheide</span></li>
         <li><span class="mono">done</span> <span class="dim">→ Ergebnis liegt in der Datei</span></li>
       </ul>
       <aside class="notes">
-        Jeder Agent bekommt einen Lebenszyklus, der als API-Ergebnis lesbar ist: working, idle, blocked, done.
+        Jeder Agent hat einen Lebenszyklus, den ich als API-Ergebnis lese: working, idle, blocked, done. idle heißt: Er wartet auf den nächsten Auftrag.
 
-        blocked ist der wichtige Zustand: Der Agent steht an einer Frage oder Freigabe — dann entscheide ich. done heißt: Der Auftrag ist abgeschlossen, das Ergebnis liegt in der Datei.
+        blocked ist der Zustand, auf den ich warte: Der Agent steht an einer Frage oder Freigabe — dann entscheide ich. In meiner letzten Update-Runde waren vier Agenten gleichzeitig blocked; alle vier hatte ich in fünf Minuten abgehandelt. done heißt: Auftrag abgeschlossen, das Ergebnis liegt in der Datei.
       </aside>
     </section>
 
@@ -225,15 +258,15 @@
       <h3>Steuerung</h3>
       <h2>Eine kleine API pro Agent</h2>
       <ul class="api-list">
-        <li>herdr agent start seeder --kind pi --pane &lt;id&gt;</li>
-        <li>herdr agent prompt seeder "&lt;auftrag&gt;" --wait</li>
-        <li>herdr agent wait seeder fixer --until done</li>
-        <li>herdr agent read seeder</li>
+        <li>herdr agent start a11y --kind pi --pane &lt;id&gt;</li>
+        <li>herdr agent prompt a11y "&lt;auftrag&gt;"</li>
+        <li>herdr agent wait a11y --until done</li>
+        <li>herdr agent read a11y</li>
       </ul>
       <aside class="notes">
-        Über die Agenten legt herdr eine kleine API: agent start — Agent starten, Typ und Pane gewählt. agent prompt — Auftrag geben, mit --wait auf den Abschluss. agent wait — auf einen Zustand warten. agent read — die Ausgabe lesen.
+        Über die Agenten legt herdr eine kleine API: agent start — Agent starten, Typ und Pane wählen. agent prompt — Auftrag geben; mit --wait wartet der Aufruf gleich mit. agent wait — warten, bis ein Zustand erreicht ist. agent read — die Ausgabe lesen.
 
-        Weil es eine API ist, kann ein Agent sie selbst bedienen: Meine Steuer-Session promptet andere Agenten. Das ist die Basis der ganzen Orchestrierung.
+        Weil es eine API ist, kann ein Agent sie selbst bedienen: Meine Steuer-Session — im Video heißt sie controller — startet und promptet die anderen Agenten, in Batches. Ich formuliere den Auftrag einmal pro Runde.
       </aside>
     </section>
 
@@ -262,9 +295,9 @@
         </div>
       </div>
       <aside class="notes">
-        Die Abgrenzung zu Subagenten — die Agent-Funktion im eigenen Tool. Ein Subagent läuft innerhalb meiner Session, sein Ergebnis fließt in meinen Kontext zurück, er erbt Modell und Regeln, und er stirbt mit meiner Session.
+        Die Frage kommt immer: Warum nicht einfach Subagenten — die Agent-Funktion im eigenen Tool? Ein Subagent läuft innerhalb meiner Session, sein Ergebnis fließt in meinen Kontext zurück, er erbt Modell und Regeln, und er endet mit meiner Session. Bei neun Repos heißt das: neun Berichte in einem Kontext.
 
-        Ein herdr-Agent ist eine eigene Session: eigenes Arbeitsverzeichnis, eigene Projekt-AGENTS.md, beliebiger Agent-Typ je Pane. Sein Zustand und seine Ausgabe sind API-Ergebnisse. Kurz: Subagenten sind Delegation innerhalb eines Agenten — herdr ist Orchestrierung über mehrere.
+        Ein herdr-Agent ist eine eigene Session: eigenes Arbeitsverzeichnis, eigene Projekt-AGENTS.md, beliebiger Agent-Typ je Pane. Zustand und Ausgabe sind API-Ergebnisse. Kurz: Subagenten sind Delegation innerhalb eines Agenten — herdr ist Orchestrierung über mehrere.
       </aside>
     </section>
 
@@ -273,21 +306,21 @@
       <h3>Feature</h3>
       <h2>Git-Worktrees pro Agent</h2>
       <div class="wt-diagram">
-        <div class="wt-base"><div class="wt-head">t3-Demo</div><span class="dim">eine Codebasis, ein Remote</span></div>
+        <div class="wt-base"><div class="wt-head">talk-Repo</div><span class="dim">eine Codebasis, ein Remote</span></div>
         <div class="wt-box">
-          <div class="wt-head accent">wt-t3-seeder</div>
-          Content-Element + Seeder<br>TCA-Schema via dev-companion
+          <div class="wt-head accent">wt-talk-a11y</div>
+          Agent a11y<br>Kontraste gegen WCAG 2.1 AA
         </div>
         <div class="wt-box">
-          <div class="wt-head" style="color:var(--cyan)">wt-t3-viewhelper</div>
-          ViewHelper-Fix<br>12 Unit-Tests, rot zuerst
+          <div class="wt-head" style="color:var(--cyan)">wt-talk-script</div>
+          Agent scripter<br>Sprechskript überarbeiten
         </div>
       </div>
-      <p class="mono dim" style="font-size:0.62em;margin-top:0.5em">herdr worktree create --branch wt-t3-seeder</p>
+      <p class="footnote mono">herdr worktree create --branch wt-talk-a11y</p>
       <aside class="notes">
-        Das Feature für Entwickler: herdr verwaltet Git-Worktrees. herdr worktree create legt einen Worktree an — eigenes Verzeichnis, eigener Branch, dieselbe Codebasis.
+        Das Feature, das mir am meisten gebracht hat: herdr verwaltet Git-Worktrees. herdr worktree create legt einen an — eigenes Verzeichnis, eigener Branch, dieselbe Codebasis.
 
-        In der Demo: Agent A baut im Worktree wt-t3-seeder das Content-Element mit Seeder — das TCA-Schema fragt er über den typo3-dev-companion ab. Agent B fixt im Worktree wt-t3-viewhelper einen ViewHelper, mit Unit-Tests, rot zuerst. Parallel an derselben Codebasis, ohne Konflikt — klassisches Git.
+        Im ersten Video seht ihr das an meinem ehrlichsten Testfall: dem Repo dieses Talks. Agent a11y prüft im Worktree wt-talk-a11y die Farbkontraste der Slides gegen WCAG 2.1 AA. Agent scripter überarbeitet im Worktree wt-talk-script dieses Sprechskript. Beide parallel an derselben Codebasis, ohne sich in die Quere zu kommen — klassisches Git, das ich vorher nie so genutzt habe.
       </aside>
     </section>
 
@@ -298,36 +331,37 @@
       <ul class="kw">
         <li><strong>Maschinen-Forwarding</strong> <span class="dim">— dieselben Befehle über SSH auf entfernter Maschine</span></li>
         <li><strong>Notifications</strong> <span class="dim">— <span class="mono">herdr notification show</span>, wenn ein Agent fertig ist oder fragt</span></li>
-        <li><strong>Panes als Terminals</strong> <span class="dim">— Befehle, Server, Tests neben Agenten</span></li>
       </ul>
       <aside class="notes">
         Zwei Features, die aus dem lokalen Werkzeug etwas Größeres machen:
 
-        Maschinen-Forwarding: herdr steuert über SSH verbundene Maschinen — gleiche Befehle, entfernter Rechner. Der Agent arbeitet auf der Maschine, auf der das Projekt läuft.
+        Maschinen-Forwarding: herdr steuert über SSH verbundene Maschinen — gleiche Befehle, entfernter Rechner. Ich leite so meine Befehle an meine zwei Demo-Maschinen weiter — der Agent arbeitet direkt dort, wo das jeweilige Projekt läuft.
 
-        Notifications: herdr notification show benachrichtigt, wenn ein Agent fertig ist oder auf eine Freigabe wartet. Das ist der Moment, in dem ich nicht auf neun Terminals starre, sondern gerufen werde, wenn es etwas zu entscheiden gibt.
+        Notifications: herdr notification show meldet sich, wenn ein Agent fertig ist oder auf eine Freigabe wartet. Vorher habe ich zwanzig Minuten auf neun Terminals gestarrt und den einen Moment trotzdem verpasst — heute werde ich gerufen, wenn es etwas zu entscheiden gibt.
       </aside>
     </section>
 
     <!-- 9 · Video 1 -->
-    <section id="video1">
-      <h3>Video 1</h3>
-      <h2>Agenten auf Worktrees</h2>
-      <video class="demo-video" src="assets/videos/demo1-tui.mp4" autoplay muted controls playsinline></video>
+    <section id="video1" class="video-slide">
+      <h3>Video 1 · Agenten auf Worktrees</h3>
+      <video class="demo-video" src="assets/videos/demo1-tui.mp4" data-autoplay muted controls playsinline preload="auto"></video>
       <aside class="notes">
-        Video 1: Agenten auf Worktrees. Links die Steuer-Session, rechts zwei Agent-Panes.
+        Video 1, 38 Sekunden. Pausieren: Klick aufs Video.
 
-        1. herdr worktree create — zwei Worktrees, eigener Branch je Agent.
-        2. Agent A: TCA-Schema abfragen (typo3-dev-companion), Content-Element + Seeder bauen, Tests zuerst.
-        3. Agent B: ViewHelper-Fix, zwölf Unit-Tests, rot zuerst.
-        4. Der Punkt: Zwei Agenten, zwei Branches, eine Codebasis, null Konflikt.
+        ⏸ 0:04 — Der Auftrag an die Steuer-Session: sechs herdr-Befehle. Zwei Agenten starten, zwei prompten, auf zwei warten. Mehr Orchestrierung ist es nicht.
+        ⏸ 0:08 — agent start antwortet mit JSON: Name, Pane, agent_status idle. Das ist die API von eben.
+        0:16 — agent wait läuft, Elapsed zählt hoch. Für mich passiert hier nichts — genau das ist der Punkt.
+        ⏸ 0:28 — Tab agents: links rechnet a11y Kontraste nach, rechts editiert scripter in seinem eigenen Worktree.
+        0:36 — a11y: alles bereits AA-konform, keine Änderung nötig. Zwei Agenten, zwei Branches, eine Codebasis.
+
+        Nicht bei 0:36 anhalten: Rechts steht scripters alte Änderungsliste.
       </aside>
     </section>
 
-    <!-- 10 · Neun Projekte -->
+    <!-- 10 · Die Landschaft -->
     <section id="systeme">
       <h3>Die Landschaft</h3>
-      <h2>Neun Projekte, neun Agenten</h2>
+      <h2>Neun Repos, sieben Systeme</h2>
       <ul class="syslist">
         <li><span class="name">TYPO3</span><span class="dim">hinter TCA — MCP: typo3-dev-companion</span></li>
         <li><span class="name">Strapi</span><span class="dim">REST-API, maschinenlesbare Doku</span></li>
@@ -338,13 +372,13 @@
         <li><span class="name">Magnolia</span><span class="dim">REST-API</span></li>
       </ul>
       <aside class="notes">
-        Die Landschaft: neun Projekte. Ich habe viele CMS-Demos aufgebaut — das geht über KI ganz gut. Sieben von ihnen haben saubere REST- oder GraphQL-APIs — da ruft der Agent den Endpunkt direkt auf, MCP ist hier Komfort. Die API-basierten Systeme haben meist auch eine sehr gut maschinenlesbare Doku dazu.
+        Meine Landschaft: neun Repos, sieben Systeme. Viele dieser CMS-Demos habe ich mit KI aufgebaut — das geht gut. Sechs der Systeme haben saubere REST- oder GraphQL-APIs mit gut maschinenlesbarer Doku: Da ruft der Agent den Endpunkt direkt auf, MCP ist dort Komfort.
 
-        Anders bei TYPO3 — dazu die nächsten beiden Folien.
+        Anders bei TYPO3.
       </aside>
     </section>
 
-    <!-- 10a · Warum TYPO3 anders ist -->
+    <!-- 11 · Warum TYPO3 anders ist -->
     <section id="typo3-anders">
       <h3>Der Sonderfall</h3>
       <h2>Warum TYPO3 anders ist</h2>
@@ -353,85 +387,116 @@
         <li><strong>Der DataHandler validiert, was reingeht</strong> <span class="dim">— Tabelle, PID, Sprache, Versionierung</span></li>
         <li><strong>Die Konventionen stehen im Core</strong> <span class="dim">— Translation-Domains, TCA-Formen, Changelog-Regeln</span></li>
       </ul>
-      <p class="dim mono" style="font-size:0.62em;margin-top:0.6em">Ein reiner API-Agent weiß davon nichts — er bräuchte Schemata, Datensätze, Regeln.</p>
+      <p class="footnote">Ein reiner API-Agent weiß davon nichts — er bräuchte Schemata, Datensätze, Regeln.</p>
       <aside class="notes">
         Warum ist TYPO3 der Sonderfall? Die Daten liegen nicht hinter einem JSON-Endpunkt, sondern hinter TCA-Definitionen. Der DataHandler validiert, was reingeht — Tabelle, PID, Sprache, Versionierung. Und die Konventionen stehen im Core: Translation-Domains, TCA-Formen, Changelog-Regeln.
 
-        Ein reiner API-Agent weiß davon nichts. Er bräuchte Schemata, Datensätze, Regeln — genau das legt der Companion an.
+        Ein reiner API-Agent weiß davon nichts. Er bräuchte Schemata, Datensätze, Regeln — genau die liefert der typo3-dev-companion.
       </aside>
     </section>
 
-    <!-- 10b · Der Companion in Aktion -->
+    <!-- 12 · Der Companion in Aktion -->
     <section id="companion">
       <h3>MCP in Aktion</h3>
-      <h2>typo3-dev-companion — was er dem Agenten gibt</h2>
-      <ul class="api-list">
-        <li>typo3_schema_lookup tt_content &nbsp;→&nbsp; Spalten, Typen, Defaults — das DDL-Schema hinter der TCA</li>
-        <li>typo3_record_lookup {"pid": 90020} &nbsp;→&nbsp; echte Datensätze der Demo-Landschaft</li>
-        <li>typo3_translation_domain_lookup EXT:... &nbsp;→&nbsp; die Label-Referenz, die das Core selbst anwendet</li>
-        <li>typo3_changelog_lookup "12" &nbsp;→&nbsp; was eine Version deprecated — die Regeln im Text</li>
-        <li>typo3_forge_lookup / typo3_gerrit_lookup &nbsp;→&nbsp; offene Issues und Patches, bevor man schreibt</li>
+      <h2>Was der typo3-dev-companion liefert</h2>
+      <ul class="api-list wide">
+        <li>typo3_schema_lookup &nbsp;→&nbsp; Spalten &amp; Typen hinter der TCA</li>
+        <li>typo3_record_lookup &nbsp;→&nbsp; echte Datensätze</li>
+        <li>typo3_translation_domain_lookup &nbsp;→&nbsp; Label-Referenzen wie im Core</li>
+        <li>typo3_changelog_lookup "14" &nbsp;→&nbsp; Deprecations je Version</li>
+        <li>typo3_forge_lookup / _gerrit_lookup &nbsp;→&nbsp; offene Issues &amp; Patches</li>
       </ul>
-      <p class="dim mono" style="font-size:0.62em;margin-top:0.6em">herdr orchestriert die Agenten — MCP macht sie wirksam.</p>
+      <p class="footnote"><strong>herdr orchestriert die Agenten — MCP macht sie wirksam.</strong></p>
       <aside class="notes">
-        Was der Companion dem Agenten konkret gibt: typo3_schema_lookup listet die Spalten, die TYPO3 aus der TCA ableitet — das DDL-Schema hinter der Definition. typo3_record_lookup liest echte Datensätze der Demo-Landschaft. typo3_translation_domain_lookup berechnet die Label-Referenz, die das Core selbst anwendet. Der Changelog-Lookup sagt, was eine Version deprecated hat. Und Forge und Gerrit zeigen offene Issues und Patches, bevor man einen Patch schreibt.
+        Was der Companion meinen Agenten konkret gibt: schema_lookup — die Spalten und Typen, die TYPO3 aus der TCA ableitet. record_lookup — echte Datensätze meiner Demo-Landschaft. translation_domain_lookup — die Label-Referenz, wie der Core sie selbst bildet. changelog_lookup — was eine Version deprecated hat. Und Forge und Gerrit — offene Issues und Patches, bevor ich selbst einen schreibe.
 
-        herdr orchestriert die Agenten — MCP macht sie wirksam.
+        Da sind die zwei Wörter vom Anfang: herdr orchestriert die Agenten — MCP macht sie wirksam.
       </aside>
     </section>
 
-    <!-- 11 · Video 2 -->
-    <section id="video2">
-      <h3>Video 2</h3>
-      <h2>Die Update-Runde: 9 Repos parallel</h2>
-      <video class="demo-video" src="assets/videos/demo2-tui.mp4" autoplay muted controls playsinline></video>
+    <!-- 13 · Video 2 -->
+    <section id="video2" class="video-slide">
+      <h3>Video 2 · Die Update-Runde, parallel</h3>
+      <video class="demo-video" src="assets/videos/demo2-tui.mp4" data-autoplay muted controls playsinline preload="auto"></video>
       <aside class="notes">
-        Video 2: Die wöchentliche Update-Runde. Links die Steuer-Session, rechts drei Agent-Panes mit Lebenszyklus.
+        Video 2, 31 Sekunden: die Update-Runde. Vier Worker — t3, strapi, payload, magnolia —, jeder in seinem Repo. Der t3-Worker prüft hier übrigens das Repo dieses Talks.
 
-        1. Auftrag: "Prüfe in jedem Repo: git-Stand, offene MRs, Prod-URL. Ergebnis nach /tmp/herdr-talk/repo.md, antworte nur mit DONE."
-        2. Während die Agenten laufen: passiert erstmal nichts Sichtbares. Ich warte.
-        3. Berichte: Strapi aktuell, keine offenen MRs. Payload war zwei Commits behind, jetzt gezogen. Pimcore-EE hat zwei Major-Bump-MRs offen, rote Pipeline — liegen lassen.
-        4. Elf Minuten für neun Repos, davon vier einhalb aktiv.
+        0:09 — viermal agent start, je ein Pane.
+        ⏸ 0:15 — Der Auftrag, viermal derselbe: git-Stand, offene MRs per glab, Prod-URL per curl. Bericht nach /tmp/herdr-talk/&lt;repo&gt;.md, antworte nur mit DONE.
+        0:21 — Tab repos: vier Panes parallel.
+        ⏸ 0:28 — Die Antworten: ERLEDIGT. FERTIG. Ich hatte „nur DONE“ verlangt. Genau deshalb lese ich Dateien und nicht die Antworten. Die Berichte liegen in /tmp/herdr-talk, das Audit liegt bei mir.
       </aside>
     </section>
 
-    <!-- 12 · Resultat -->
+    <!-- 14 · Resultat -->
     <section id="resultat">
       <h3>Resultat</h3>
       <h2>Die Update-Runde in Zahlen</h2>
       <div class="stats">
-        <div class="stat"><span class="num">9</span><span class="lbl">Repos parallel</span></div>
-        <div class="stat"><span class="num">5</span><span class="lbl">max. parallel <span class="mono">(API-Limit)</span></span></div>
-        <div class="stat"><span class="num">11 min</span><span class="lbl">Gesamt</span></div>
-        <div class="stat"><span class="num">4,5 min</span><span class="lbl">aktiv</span></div>
+        <div class="stat"><span class="num">9</span><span class="lbl">Repos · 2 Batches (5 + 4)</span></div>
+        <div class="stat"><span class="num">60 min</span><span class="lbl">vorher, nacheinander</span></div>
+        <div class="stat"><span class="num">11 min</span><span class="lbl">heute, gesamt</span></div>
+        <div class="stat"><span class="num">4,5 min</span><span class="lbl">davon aktiv</span></div>
       </div>
+      <p class="footnote">Max. 5 parallele Prompts — ein API-Limit, nicht eines von herdr.</p>
       <aside class="notes">
-        Die Zahlen der Update-Runde: neun Repos parallel. Das Limit liegt bei fünf parallelen Prompts — ein API-Limit, nicht eines von herdr. Der sechste Agent bekommt ein 429 und läuft nicht.
+        Meine Zahlen aus einer echten Runde: neun Repos, in zwei Batches — fünf und vier. Fünf parallele Prompts sind ein API-Limit, nicht eines von herdr.
 
-        Elf Minuten Gesamtdauer, vier einhalb davon war ich aktiv. Vorher: eine Stunde sequentielle Kleinarbeit.
+        Elf Minuten insgesamt, viereinhalb davon war ich aktiv. Vorher: eine Stunde nacheinander, meistens freitags nach Feierabend.
       </aside>
     </section>
 
-    <!-- 13 · Workflow -->
+    <!-- 15 · Workflow -->
     <section id="workflow">
       <h3>Der Workflow</h3>
       <h2>Ein Agent pro Aufgabe</h2>
       <ul class="kw">
         <li><strong>ein Agent pro Aufgabe</strong> <span class="dim">— Review, Update, Scaffold, Seeder</span></li>
-        <li><strong>Batches von 5</strong> <span class="dim">— API-Limit, nicht herdr</span></li>
-        <li><strong>Ergebnis in eine Datei</strong> <span class="dim">— Antwort nur „DONE“</span></li>
+        <li><strong>Batches von 5</strong> <span class="dim">— dann die nächsten</span></li>
+        <li><strong>Ergebnis in eine Datei</strong> <span class="dim">— Antworten sind keine Schnittstelle</span></li>
         <li><strong>Audit bei mir</strong> <span class="dim">— Berichte lesen, mergen oder liegen lassen</span></li>
       </ul>
       <aside class="notes">
-        Der Workflow darauf: Ein Agent pro Aufgabe — nicht ein Agent mit einer Liste. Review, Update, Scaffold, Seeder: je eine Sache zu Ende gebracht.
+        Mein Workflow darauf: ein Agent pro Aufgabe — nicht ein Agent mit einer Liste. Review, Update, Scaffold, Seeder: je eine Sache, zu Ende gebracht.
 
-        Beauftragt in Batches von maximal fünf, wegen des API-Limits. Jeder Agent schreibt sein Ergebnis in eine Datei und antwortet nur mit DONE — Pane-Output ist keine verlässliche Schnittstelle.
-
-        Und das Audit bleibt bei mir: Berichte lesen, MRs prüfen, mergen oder liegen lassen.
+        Beauftragt in Batches von höchstens fünf. Jeder Agent schreibt sein Ergebnis in eine Datei — ihr habt eben gesehen, warum. Und das Audit behalte ich: Ich lese die Berichte, prüfe die MRs und entscheide über jeden Merge.
       </aside>
     </section>
 
-    <!-- 14 · Stolpersteine -->
+    <!-- 16 · Der Review-Loop -->
+    <section id="review-loop">
+      <h3>Qualität</h3>
+      <h2>Der Review-Loop: coder baut, brain prüft</h2>
+      <ul class="kw">
+        <li><strong>coder entwickelt</strong> <span class="dim">— Modell-Profil fürs Schreiben</span></li>
+        <li><strong>brain reviewt in frischer Session</strong> <span class="dim">— anderes Profil, ohne Entstehungskontext</span></li>
+        <li><strong>Befunde zurück an coder</strong> <span class="dim">— berechtigt → Fix, unberechtigt → Begründung</span></li>
+        <li><strong>Orchestriert mit herdr</strong> <span class="dim">— ich kann in jede einzelne Session eingreifen</span></li>
+      </ul>
+      <p class="footnote mono">herdr agent prompt brain "Reviewe den letzten Commit …"</p>
+      <aside class="notes">
+        Der Kern meines Workflows: coder und brain sind bei mir zwei Modell-Profile — coder schreibt, brain prüft. Mit coder entwickle ich. Dann reviewt brain denselben Stand in einer frischen Session — ohne den Entstehungskontext. Ein Modell ist gegenüber seiner eigenen Lösung systematisch unkritisch; wer den Entstehungsweg nicht kennt, liest den Code mit fremdem Blick.
+
+        Die Befunde gehen zurück an coder: berechtigt wird gefixt, unberechtigt wird begründet. Beide laufen in eigenen herdr-Panes — ich kann in jede Session eingreifen.
+      </aside>
+    </section>
+
+    <!-- 17 · Video 3 -->
+    <section id="video3" class="video-slide">
+      <h3>Video 3 · Der Review-Loop in Aktion</h3>
+      <video class="demo-video" src="assets/videos/demo3-review-loop.mp4" data-autoplay muted controls playsinline preload="auto"></video>
+      <aside class="notes">
+        Video 3, 57 Sekunden: der Review-Loop am Repo dieses Talks. Die Steuer-Session startet coder und brain, jeder in einer eigenen Session.
+
+        0:00 — agent start brain mit --model brain: zweites Modell-Profil, eigene Session.
+        ⏸ ~0:16 — coder hat die Kontraste geprüft: alles schon AA-konform. Er committet bewusst nichts, statt einen Fix vorzutäuschen.
+        ⏸ ~0:24 — Rechts brains Review des letzten Commits als nummerierte Liste; links prüft coder jeden Befund gegen den aktuellen Stand.
+        ~0:32 — Vorschlag „Historie umschreiben“: abgelehnt, mit Begründung — drei Worktrees arbeiten parallel auf dem Repo.
+        ~0:40 — Ein Teil war berechtigt: toter Code, ein Player, den nichts mehr lädt — gelöscht. Ein Teil war schon erledigt. So soll es laufen: nicht alles annehmen, nicht alles ablehnen.
+      </aside>
+    </section>
+
+    <!-- 18 · Stolpersteine -->
     <section id="stolpersteine">
       <h3>Stolpersteine</h3>
       <h2>Was schiefgeht</h2>
@@ -442,128 +507,123 @@
         <li><strong>paralleles Fehlverhalten</strong> <span class="dim">— falscher Kontext × 9 = 9 falsche Ergebnisse</span></li>
       </ul>
       <aside class="notes">
-        Was schiefgeht: Das Concurrency-Limit — Agent Nummer sechs bekommt ein 429 und existiert nicht, das dauerte, bis ich es verstanden hatte. Pane-Output ist keine Schnittstelle — nicht eingesammelte Antworten sind weg, deshalb Dateien.
+        Was ich selbst habe schiefgehen lassen: Beim ersten Lauf habe ich sechs Agenten gestartet. Der sechste bekam ein 429 und existierte einfach nicht — zwanzig Minuten habe ich gesucht, bis ich das Limit verstanden hatte. Und ich habe drei Agenten-Berichte verloren, weil ich sie nur im Pane-Output hatte — seitdem schreibt jeder Agent in eine Datei.
 
-        Ein unvorsichtiger Agent macht echte Git-Historie — deshalb stehen Deployment- und Commit-Regeln in der AGENTS.md jedes Projekts, nicht im Prompt. Und Parallelität bedeutet auch paralleles Fehlverhalten: Mehrere Agenten mit demselben falschen Kontext sind mehrere falsche Ergebnisse. Der Kontext muss vor dem Start stimmen.
+        Ein Agent hat mir in die falsche Git-Historie committet — seitdem stehen Commit- und Deployment-Regeln in der AGENTS.md jedes Projekts, nicht im Prompt. Und ich habe zweimal denselben falschen Kontext an mehrere Agenten verteilt: Parallele Arbeit heißt auch paralleles Fehlverhalten. Der Kontext muss vor dem Start stimmen.
       </aside>
     </section>
 
-    <!-- 15 · Gelernt -->
-    <!-- 13 · Der Review-Loop -->
-    <section id="review-loop">
-      <h3>Qualität</h3>
-      <h2>Der Review-Loop: coder baut, brain prüft</h2>
-      <ul class="kw">
-        <li><strong>coder entwickelt</strong> <span class="dim">— Modell-Scope für den Code</span></li>
-        <li><strong>brain reviewt in frischer Session</strong> <span class="dim">— ohne den Entstehungskontext, anderer Blick</span></li>
-        <li><strong>Befunde zurück an coder</strong> <span class="dim">— berechtigt → Fix, unberechtigt → Begründung</span></li>
-        <li><strong>Orchestriert mit herdr</strong> <span class="dim">— ich kann in jede einzelne Session eingreifen</span></li>
-      </ul>
-      <p class="dim mono" style="font-size:0.62em;margin-top:0.6em">herdr agent prompt brain "Reviewe den letzten Commit …"</p>
-      <aside class="notes">
-        Der Kern meines Workflows: Mit dem Modell-Scope coder entwickle ich den Code. Dann reviewt brain denselben Stand in einer frischen Session — ohne den Entstehungskontext. Ein Modell ist gegenüber seiner eigenen Lösung systematisch unkritisch; wer den Entstehungsweg nicht kennt, liest den Code mit fremdem Blick. Die Befunde gehen zurück an coder: berechtigt wird gefixt, unberechtigt wird begründet.
-
-        Orchestriert ist das mit herdr — beide Agenten laufen in eigenen Panes, und ich kann in jede einzelne Session eingreifen, wenn etwas hängt.
-      </aside>
-    </section>
-
-    <!-- 14 · Video 3 -->
-    <section id="video3">
-      <h3>Video 3</h3>
-      <h2>Der Review-Loop in Aktion</h2>
-      <video class="demo-video" src="assets/videos/demo3-review-loop.mp4" autoplay muted controls playsinline></video>
-      <aside class="notes">
-        Video 3: Der Review-Loop. Die echte herdr-TUI: ein Controller-Agent startet coder und brain, jeder in einer eigenen Session.
-
-        1. Der Controller tippt live die agent-start-Befehle — coder und brain erscheinen mit ihren Badges.
-        2. Tab-Wechsel auf den Loop-Tab: links coder, rechts brain.
-        3. coder baut, brain liefert seine Befunde als nummerierte Liste, coder prüft jeden und antwortet begründet.
-        4. In dieser Demo war der Befund unberechtigt — alle Kontraste im Deck erfüllen die Grenzwerte bereits. Der coder rät nicht, er begründet. Auch das ist das Muster.
-      </aside>
-    </section>
-
-    <!-- 15 · Gelernt aus dem Whitepaper -->
-    <section id="whitepaper">
-      <h3>Einordnung</h3>
-      <h2>Sinnvolle Sachen, übertriebene nicht</h2>
-      <ul class="kw">
-        <li><strong>Review in frischer Session, anderes Modell</strong> <span class="dim">— mein Workflow, Demo 3</span></li>
-        <li><strong>Test-First bindet das Modell an die Realität</strong> <span class="dim">— der Test ist der ausdrückliche Vertrag</span></li>
-        <li><strong>Stop-Punkte bleiben beim Menschen</strong> <span class="dim">— Push, Merge, Audit: meine Entscheidung</span></li>
-        <li><strong>Coverage misst nicht Prüfung</strong> <span class="dim">— 98 Prozent sagen nichts über die Assertions</span></li>
-      </ul>
-      <p class="dim" style="font-size:0.68em;margin-top:0.6em">Der Rest des Neun-Schritt-Prozesses — Board, Vault, Nacht-Runner — ist für ein Team dieser Größe Overhead. Die Mechanik von herdr und die Disziplin der Verträge reichen.</p>
-      <aside class="notes">
-        Es gibt ein Handbuch zu dem Thema — Softwareentwicklung mit KI, mit einem Neun-Schritt-Prozess, Board, Vault und Nacht-Runner. Ich halte vieles davon für übertrieben, aber ein paar Sachen kann man sauber ableiten.
-
-        Review in einer frischen Session durch ein anderes Modell — das mache ich, Demo 3. Test-First, weil der Test das Modell an die Realität bindet. Stop-Punkte beim Menschen — Push und Merge entscheide ich. Und Coverage ist nicht Prüfung.
-
-        Der Rest ist Overhead für ein Team dieser Größe. Das Werkzeug liefert die Mechanik, die Disziplin liefert man.
-      </aside>
-    </section>
-
-    <!-- 16 · Gelernt -->
-    <section id="gelernt">
-      <h3>Fazit</h3>
-      <h2>Drei Sätze</h2>
-      <ul class="kw" style="font-size:0.95em">
-        <li><strong>Orchestrierung braucht Schnittstellen</strong> <span class="dim">— Zustand, Prompt, Ausgabe</span></li>
-        <li><strong>Worktrees für Parallel-Arbeit</strong> <span class="dim">— ein Agent pro Branch, eine Codebasis</span></li>
-        <li><strong>Die Verträge schreibt man selbst</strong> <span class="dim">— AGENTS.md, Limits, Audit</span></li>
-      </ul>
-      <aside class="notes">
-        Drei Sätze zum Mitnehmen: Orchestrierung braucht keine Intelligenz, sondern Schnittstellen — herdr macht Agenten steuerbar über Zustand, Prompt und Ausgabe.
-
-        Worktrees sind der Schlüssel für echtes Parallel-Arbeiten: ein Agent pro Branch, eine Codebasis, null Konflikt.
-
-        Und die Verträge schreibt man selbst — AGENTS.md pro Projekt, Concurrency-Limits, Audit bei mir. Das Werkzeug liefert die Mechanik, die Disziplin liefert man.
-      </aside>
-    </section>
-
-    <!-- 16 · Quality Gates -->
+    <!-- 19 · Quality Gates -->
     <section id="quality-gates">
       <h3>Qualität</h3>
       <h2>Meine Quality Gates</h2>
       <ul class="kw">
-        <li><strong>Test-first, wörtlich</strong> <span class="dim">— Test reproduziert den Bug, rot gesehen, dann erst Produktionscode</span></li>
+        <li><strong>Test-first, wörtlich</strong> <span class="dim">— Test reproduziert den Bug, rot gesehen, dann Produktionscode</span></li>
         <li><strong>Unit-Tests immer</strong> <span class="dim">— Vitest/Jest für TypeScript, PHPUnit für PHP</span></li>
-        <li><strong>Playwright pro Umgebung</strong> <span class="dim">— ddev, sparkles, onotheooy; ein Project je Ziel</span></li>
-        <li><strong>Smoke vs. Task</strong> <span class="dim">— Deployment prüfen vs. editorale Änderungen</span></li>
+        <li><strong>Playwright pro Umgebung</strong> <span class="dim">— lokal in ddev und auf jedem Zielserver</span></li>
+        <li><strong>Coverage misst nicht Prüfung</strong> <span class="dim">— 98 % sagen nichts über die Assertions</span></li>
+        <li><strong>Stop-Punkte beim Menschen</strong> <span class="dim">— Push, Merge, Audit: meine Entscheidung</span></li>
       </ul>
       <aside class="notes">
-        Und weil parallele Agenten auch parallel fertig werden: Meine Quality Gates. Die erste Regel ist Test-first — und ich meine es wörtlich: Jeder Bugfix beginnt bei mir mit dem Test, der den Bug reproduziert. Ich sehe ihn rot, und erst dann fasse ich Produktionscode an.
+        Weil parallele Agenten auch parallel fertig werden, brauche ich Quality Gates. Erstens Test-first, und zwar wörtlich: Jeder Bugfix beginnt mit dem Test, der den Bug reproduziert. Ich sehe ihn rot, erst dann fasse ich Produktionscode an. Der Test ist der Vertrag, der das Modell an die Realität bindet.
 
-        Unit-Tests immer: Vitest und Jest für TypeScript, PHPUnit für PHP — verändertes Verhalten ohne Test schicke ich nicht raus, auch nicht aus einem Agenten. Und für das Frontend: Playwright mit einem Project pro Umgebung — ddev, sparkles, onotheooy. Smoke-Tests prüfen bei mir das Deployment, Task-Tests das Ergebnis editoraler Änderungen. Bevor ich etwas als erledigt verbuche, ist die Zielumgebung am Start und die Tests sind gelaufen.
+        Unit-Tests immer: Vitest und Jest für TypeScript, PHPUnit für PHP. Verändertes Verhalten ohne Test geht nicht raus, auch nicht aus einem Agenten. Fürs Frontend Playwright, mit einem Project pro Umgebung: lokal in ddev und auf jedem Zielserver. Smoke-Tests prüfen das Deployment, Task-Tests das Ergebnis redaktioneller Änderungen.
+
+        Coverage ist dabei kein Maß: 98 Prozent sagen nichts über die Assertions. Und die Stop-Punkte bleiben bei mir: Push und Merge entscheide ich — eine frühere Freigabe gilt nicht für neue Commits. Mehr Prozess braucht eine Person mit neun Agenten nicht.
       </aside>
     </section>
 
-    <!-- 17 · AGENTS.md -->
+    <!-- 20 · AGENTS.md -->
     <section id="agents-md">
       <h3>Verträge</h3>
       <h2>Was in meiner AGENTS.md steht</h2>
-      <ul class="kw" style="font-size:0.95em">
-        <li><strong>Commit-Identität pro Remote</strong> <span class="dim">— GitHub/GitLab: look@susi.dev · Neusta: s.moog@neusta.de</span></li>
+      <ul class="kw">
+        <li><strong>Commit-Identität pro Remote</strong> <span class="dim">— per Repo-Config, nie per --author</span></li>
         <li><strong>glab statt curl</strong> <span class="dim">— MRs, Pipelines, API über ein Werkzeug</span></li>
-        <li><strong>Worklog pro Aufgabe</strong> <span class="dim">— ~/worklog, Basis der Zeiterfassung, vom Agenten gepflegt</span></li>
-        <li><strong>herdr-Regeln</strong> <span class="dim">— ein Agent pro Projekt, IDs aus JSON, Batches von 5</span></li>
+        <li><strong>Worklog pro Aufgabe</strong> <span class="dim">— eine Zeile in ~/worklog, vom Agenten gepflegt</span></li>
+        <li><strong>herdr-Regeln</strong> <span class="dim">— ein Agent pro Projekt, Pane-IDs aus der JSON-Antwort, Batches von 5</span></li>
       </ul>
       <aside class="notes">
-        Der andere Teil, den ihr mitnehmen könnt: Was bei mir in der AGENTS.md jedes Projekts steht. Erstens Commit-Identitäten pro Remote — GitHub und GitLab bekommen look@susi.dev, alles Neusta-interne s.moog@neusta.de. Per Repo-Config gesetzt, nie per --author überschrieben. Ohne diese Regel committet ein Agent mit der falschen Identität — das hatte ich.
+        Was ihr direkt mitnehmen könnt: was bei mir in der AGENTS.md jedes Projekts steht. Erstens die Commit-Identität pro Remote — GitHub und GitLab bekommen meine private Adresse, alles Neusta-interne die Firmenadresse. Per Repo-Config gesetzt, nie per --author überschrieben. Ohne diese Regel committet ein Agent mit der falschen Identität — das hatte ich.
 
-        Zweitens: glab statt roher curl-Aufrufe für GitLab — MRs, Pipelines, API über ein Werkzeug. Weniger Spielraum für Agenten-Fantasie-Endpoints. Drittens mein Worklog: Eine Zeile pro Aufgabe in ~/worklog — die Basis für meine Zeiterfassung, vom Agenten selbst gepflegt. Und viertens die herdr-Regeln: Ein Agent pro Projekt, IDs aus JSON-Antworten geparst, Batches von fünf. Der Kontext stimmt vor dem Start — nicht im Prompt danach.
+        Zweitens: glab statt curl. Ein Werkzeug für MRs, Pipelines und API — dann erfindet der Agent keine Endpunkte. Drittens mein Worklog: eine Zeile pro Aufgabe in ~/worklog, vom Agenten selbst gepflegt — die Basis meiner Zeiterfassung. Und viertens die herdr-Regeln: ein Agent pro Projekt, Pane-IDs aus der JSON-Antwort statt geraten, Batches von fünf.
       </aside>
     </section>
 
-    <!-- 18 · Ende -->
-    <section id="ende" class="slide-fazit dark-slide">
-      <p class="line"><strong>herdr</strong> orchestriert.</p>
-      <p class="line"><strong>MCP</strong> macht wirksam.</p>
-      <p class="line"><span class="accent">Die Entscheidung bleibt bei euch.</span></p>
-      <p style="font-size:0.7em;color:rgba(255,255,255,0.85);margin-top:1.2em">Slides &amp; Demo-Repos: github.com/smoog/talk · look@susi.dev</p>
+    <!-- 21 · Fazit -->
+    <section id="gelernt">
+      <h3>Fazit</h3>
+      <h2>Drei Sätze</h2>
+      <ul class="kw" style="font-size:0.95em">
+        <li><strong>Orchestrierung über Schnittstellen, nicht über Intelligenz</strong> <span class="dim">— Zustand, Prompt, Ausgabe</span></li>
+        <li><strong>Worktrees für Parallel-Arbeit</strong> <span class="dim">— ein Agent pro Branch, eine Codebasis</span></li>
+        <li><strong>Die Verträge schreibt man selbst</strong> <span class="dim">— AGENTS.md, Limits, Audit</span></li>
+      </ul>
       <aside class="notes">
-        Zusammengefasst: herdr orchestriert — Agenten mit Zustand, Schnittstelle und Worktrees. MCP macht die Agenten wirksam — bei TYPO3 konkret der dev-companion. Und die Entscheidung bleibt bei euch.
+        Drei Sätze zum Mitnehmen. Erstens: Ich orchestriere über Schnittstellen, nicht über Intelligenz — herdr gibt mir Zustand, Prompt und Ausgabe meiner Agenten als API.
 
-        Wenn ihr ausprobieren wollt: herdr installieren, drei Tabs, drei Agenten — und jedem die Aufgabe geben, die ihr am längsten vor euch herschiebt. Danke!
+        Zweitens: Worktrees bringen echtes Parallel-Arbeiten — ein Agent pro Branch, eine Codebasis.
+
+        Drittens: Die Verträge halte ich selbst fest — AGENTS.md in jedem Projekt, fünf Prompts pro Batch, das Audit bei mir. Das Werkzeug liefert die Mechanik, die Disziplin bringe ich.
+      </aside>
+    </section>
+
+    <!-- 22 · Ausblick -->
+    <section id="ausblick">
+      <h3>Ausblick</h3>
+      <h2>Über den Code hinaus: Worklogs automatisch</h2>
+      <div class="flow">
+        <div class="flow-sources">
+          <div class="wt-box"><div class="wt-head accent">~/worklog</div>was die Agenten pro Aufgabe notieren</div>
+          <div class="wt-box"><div class="wt-head" style="color:var(--cyan)">Exchange-Kalender</div>Termine, per Sync</div>
+          <div class="wt-box"><div class="wt-head" style="color:#B800B8">Microsoft Copilot</div>Chats</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="wt-base"><div class="wt-head">custom MCP<br>+ herdr-Agent</div><span class="dim">selbst gebaut</span></div>
+        <div class="flow-arrow">→</div>
+        <div class="wt-box flow-out"><div class="wt-head accent">Worklog</div>Basis der Zeiterfassung</div>
+      </div>
+      <p class="footnote">Dasselbe Muster: herdr orchestriert, MCP macht wirksam — diesmal für den Arbeitsalltag.</p>
+      <aside class="notes">
+        Und das Ganze hört nicht beim Code auf. Mit herdr und einem selbst gebauten MCP-Server lasse ich meine Worklogs automatisch erzeugen. Die Quellen: das Worklog, das die Agenten ohnehin pro Aufgabe schreiben — ihr habt es auf der AGENTS.md-Folie gesehen. Dazu meine Termine aus dem Exchange-Kalender, den ich dafür synchronisiere. Und meine Chats, über Microsoft Copilot.
+
+        Der Agent führt das zu einem Worklog zusammen — die Grundlage meiner Zeiterfassung. Dasselbe Muster wie im ganzen Talk: herdr orchestriert, das MCP macht den Agenten wirksam. Diesmal nicht für TYPO3, sondern für meinen Arbeitsalltag.
+      </aside>
+    </section>
+
+    <!-- 23 · Ausblick: Tickets -->
+    <section id="ausblick-tickets">
+      <h3>Ausblick</h3>
+      <h2>Gleiches Muster für Ticketsysteme</h2>
+      <ul class="kw">
+        <li><strong>der gesamte Workflow</strong> <span class="dim">— vom Ticket bis zum MR</span></li>
+        <li><strong>Zugriff über API oder custom MCP</strong> <span class="dim">— wie bei den CMS: API, wo sauber; MCP, wo nötig</span></li>
+        <li><strong>Tickets lesen</strong> <span class="dim">— Kontext für den Agenten vor dem Start</span></li>
+        <li><strong>kommentieren &amp; pflegen</strong> <span class="dim">— der Agent schreibt zurück ins Ticket</span></li>
+      </ul>
+      <aside class="notes">
+        Dasselbe gilt letztlich für jedes Ticketsystem — und zwar für den gesamten Workflow, vom Ticket bis zum MR. Der Zugriff läuft wie bei den CMS: über die API, wo es eine saubere gibt, über einen eigenen MCP-Server, wo nicht.
+
+        Der Agent liest das Ticket als Kontext, bevor er startet. Und er schreibt zurück: Er kommentiert und pflegt das Ticket. herdr orchestriert, das MCP macht wirksam — egal, ob das Ziel ein CMS, mein Kalender oder ein Ticket ist.
+      </aside>
+    </section>
+
+    <!-- 24 · Ende -->
+    <section id="ende" class="dark-slide" data-background-color="#000050">
+      <h3>Euer Start</h3>
+      <h2>Neun sind ein Team. <span class="accent">Fangt mit drei an.</span></h2>
+      <ol class="steps">
+        <li><span class="step-num">1</span><span><strong>herdr installieren</strong> <span class="step-dim">— herdr.dev</span></span></li>
+        <li><span class="step-num">2</span><span><strong>drei separate Tickets, drei Worktrees</strong> <span class="step-dim">— je ein Agent, je ein Branch</span></span></li>
+        <li><span class="step-num">3</span><span><strong>Ergebnis in eine Datei</strong> <span class="step-dim">— und die Entscheidung bleibt bei euch</span></span></li>
+      </ol>
+      <p class="end-contact">Danke! · Slides: talk.shinyhappypages.de/t3camp2026 · look@susi.dev</p>
+      <aside class="notes">
+        Neun sind ein Team — aber niemand muss mit neun anfangen. Fangt mit drei an. So habe ich auch angefangen.
+
+        Erstens: herdr installieren. Zweitens: Nehmt euch drei separate Tickets — gern die, die seit Wochen liegen. Für jedes ein eigener Worktree mit herdr worktree create, und in jedem ein eigener Agent. Drei Branches, eine Codebasis, und keiner kommt dem anderen in die Quere. Drittens, von Anfang an: Ergebnis in eine Datei, nicht ins Terminal. Und die Entscheidung bleibt bei euch.
+
+        Die Slides findet ihr unter talk.shinyhappypages.de. Danke — und jetzt gern eure Fragen.
       </aside>
     </section>
 
