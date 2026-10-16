@@ -520,12 +520,46 @@
       </aside>
     </section>
 
-    <!-- 16 · Ende -->
+    <!-- 16 · Quality Gates -->
+    <section id="quality-gates">
+      <h3>Qualität</h3>
+      <h2>Meine Quality Gates</h2>
+      <ul class="kw">
+        <li><strong>Test-first, wörtlich</strong> <span class="dim">— Test reproduziert den Bug, rot gesehen, dann erst Produktionscode</span></li>
+        <li><strong>Unit-Tests immer</strong> <span class="dim">— Vitest/Jest für TypeScript, PHPUnit für PHP</span></li>
+        <li><strong>Playwright pro Umgebung</strong> <span class="dim">— ddev, sparkles, onotheooy; ein Project je Ziel</span></li>
+        <li><strong>Smoke vs. Task</strong> <span class="dim">— Deployment prüfen vs. editorale Änderungen</span></li>
+      </ul>
+      <aside class="notes">
+        Und weil parallele Agenten auch parallel fertig werden: Meine Quality Gates. Die erste Regel ist Test-first — und ich meine es wörtlich: Jeder Bugfix beginnt bei mir mit dem Test, der den Bug reproduziert. Ich sehe ihn rot, und erst dann fasse ich Produktionscode an.
+
+        Unit-Tests immer: Vitest und Jest für TypeScript, PHPUnit für PHP — verändertes Verhalten ohne Test schicke ich nicht raus, auch nicht aus einem Agenten. Und für das Frontend: Playwright mit einem Project pro Umgebung — ddev, sparkles, onotheooy. Smoke-Tests prüfen bei mir das Deployment, Task-Tests das Ergebnis editoraler Änderungen. Bevor ich etwas als erledigt verbuche, ist die Zielumgebung am Start und die Tests sind gelaufen.
+      </aside>
+    </section>
+
+    <!-- 17 · AGENTS.md -->
+    <section id="agents-md">
+      <h3>Verträge</h3>
+      <h2>Was in meiner AGENTS.md steht</h2>
+      <ul class="kw" style="font-size:0.95em">
+        <li><strong>Commit-Identität pro Remote</strong> <span class="dim">— GitHub/GitLab: look@susi.dev · Neusta: s.moog@neusta.de</span></li>
+        <li><strong>glab statt curl</strong> <span class="dim">— MRs, Pipelines, API über ein Werkzeug</span></li>
+        <li><strong>Worklog pro Aufgabe</strong> <span class="dim">— ~/worklog, Basis der Zeiterfassung, vom Agenten gepflegt</span></li>
+        <li><strong>herdr-Regeln</strong> <span class="dim">— ein Agent pro Projekt, IDs aus JSON, Batches von 5</span></li>
+      </ul>
+      <aside class="notes">
+        Der andere Teil, den ihr mitnehmen könnt: Was bei mir in der AGENTS.md jedes Projekts steht. Erstens Commit-Identitäten pro Remote — GitHub und GitLab bekommen look@susi.dev, alles Neusta-interne s.moog@neusta.de. Per Repo-Config gesetzt, nie per --author überschrieben. Ohne diese Regel committet ein Agent mit der falschen Identität — das hatte ich.
+
+        Zweitens: glab statt roher curl-Aufrufe für GitLab — MRs, Pipelines, API über ein Werkzeug. Weniger Spielraum für Agenten-Fantasie-Endpoints. Drittens mein Worklog: Eine Zeile pro Aufgabe in ~/worklog — die Basis für meine Zeiterfassung, vom Agenten selbst gepflegt. Und viertens die herdr-Regeln: Ein Agent pro Projekt, IDs aus JSON-Antworten geparst, Batches von fünf. Der Kontext stimmt vor dem Start — nicht im Prompt danach.
+      </aside>
+    </section>
+
+    <!-- 18 · Ende -->
     <section id="ende" class="slide-fazit dark-slide">
       <p class="line"><strong>herdr</strong> orchestriert.</p>
       <p class="line"><strong>MCP</strong> macht wirksam.</p>
       <p class="line"><span class="accent">Die Entscheidung bleibt bei euch.</span></p>
-      <p style="font-size:0.7em;color:rgba(255,255,255,0.75);margin-top:1.2em">Slides &amp; Demo-Repos: github.com/smoog/talk · look@susi.dev</p>
+      <p style="font-size:0.7em;color:rgba(255,255,255,0.85);margin-top:1.2em">Slides &amp; Demo-Repos: github.com/smoog/talk · look@susi.dev</p>
       <aside class="notes">
         Zusammengefasst: herdr orchestriert — Agenten mit Zustand, Schnittstelle und Worktrees. MCP macht die Agenten wirksam — bei TYPO3 konkret der dev-companion. Und die Entscheidung bleibt bei euch.
 
