@@ -114,13 +114,38 @@ Datei: `assets/videos/demo2-tui.mp4` (~48 Sek., echte herdr-TUI-Aufnahme, Light-
 >
 > Und das Audit bleibt bei mir: Berichte lesen, MRs prüfen, mergen oder liegen lassen.
 
-## [SLIDE 14 — Stolpersteine] (24:30)
+## [SLIDE 13a — Der Review-Loop] (24:00)
+
+> Der Kern meines Workflows: Mit dem Modell-Scope *coder* entwickle ich den Code. Dann reviewt *brain* denselben Stand in einer frischen Session — ohne den Entstehungskontext. Ein Modell ist gegenüber seiner eigenen Lösung systematisch unkritisch; wer den Entstehungsweg nicht kennt, liest den Code mit fremdem Blick.
+>
+> Die Befunde gehen zurück an coder: berechtigt wird gefixt, unberechtigt wird begründet. Orchestriert mit herdr — beide Agenten in eigenen Panes, ich kann in jede einzelne Session eingreifen.
+
+## [SLIDE 13b — VIDEO 3: Der Review-Loop in Aktion] (25:00)
+
+Datei: `assets/videos/demo3-review-loop.mp4` (~56 Sek., echte herdr-TUI-Aufnahme, Light-Theme).
+
+> Video 3: Der Review-Loop. Ein Controller-Agent startet coder und brain, jeder in einer eigenen Session.
+>
+> 1. Der Controller tippt live die agent-start-Befehle — beide erscheinen mit ihren Badges.
+> 2. Tab-Wechsel auf den Loop-Tab: links coder, rechts brain.
+> 3. coder baut, brain liefert Befunde als nummerierte Liste, coder prüft jeden und antwortet begründet.
+> 4. In dieser Demo war der Befund unberechtigt — der coder rät nicht, er begründet. Auch das ist das Muster.
+
+## [SLIDE 14 — Sinnvolle Sachen, übertriebene nicht] (26:30)
+
+> Es gibt ein Handbuch zu dem Thema — Softwareentwicklung mit KI, mit einem Neun-Schritt-Prozess, Board, Vault und Nacht-Runner. Ich halte vieles davon für übertrieben, aber ein paar Sachen kann man sauber ableiten:
+>
+> *Review in einer frischen Session durch ein anderes Modell* — das mache ich, Demo 3. *Test-First*, weil der Test das Modell an die Realität bindet — der Test ist der ausdrückliche Vertrag. *Stop-Punkte beim Menschen* — Push und Merge entscheide ich, eine frühere Freigabe gilt nicht für neue Commits. Und *Coverage ist nicht Prüfung* — 98 Prozent sagen nichts über die Assertions.
+>
+> Der Rest ist Overhead für ein Team dieser Größe. Das Werkzeug liefert die Mechanik, die Disziplin liefert man.
+
+## [SLIDE 15 — Stolpersteine] (28:00)
 
 > Was schiefgeht: Das Concurrency-Limit — Agent Nummer sechs bekommt ein 429 und existiert nicht, das dauerte, bis ich es verstanden hatte. Pane-Output ist keine Schnittstelle — nicht eingesammelte Antworten sind weg, deshalb Dateien.
 >
 > Ein unvorsichtiger Agent macht echte Git-Historie — deshalb stehen Deployment- und Commit-Regeln in der AGENTS.md jedes Projekts, nicht im Prompt. Und Parallelität bedeutet auch paralleles Fehlverhalten: Mehrere Agenten mit demselben falschen Kontext sind mehrere falsche Ergebnisse. Der Kontext muss vor dem Start stimmen.
 
-## [SLIDE 15 — Drei Sätze] (26:30)
+## [SLIDE 16 — Drei Sätze] (29:00)
 
 > Drei Sätze zum Mitnehmen: Orchestrierung braucht keine Intelligenz, sondern Schnittstellen — herdr macht Agenten steuerbar über Zustand, Prompt und Ausgabe.
 >
@@ -128,7 +153,7 @@ Datei: `assets/videos/demo2-tui.mp4` (~48 Sek., echte herdr-TUI-Aufnahme, Light-
 >
 > Und die Verträge schreibt man selbst — AGENTS.md pro Projekt, Concurrency-Limits, Audit bei mir. Das Werkzeug liefert die Mechanik, die Disziplin liefert man.
 
-## [SLIDE 16 — Ende] (28:00)
+## [SLIDE 17 — Ende] (30:00)
 
 > Zusammengefasst: herdr orchestriert — Agenten mit Zustand, Schnittstelle und Worktrees. MCP macht die Agenten wirksam — bei TYPO3 konkret der dev-companion. Und die Entscheidung bleibt bei euch.
 >
@@ -145,9 +170,9 @@ Datei: `assets/videos/demo2-tui.mp4` (~48 Sek., echte herdr-TUI-Aufnahme, Light-
 | Abgrenzung, Worktrees, Features | 5,5 | 14,5 |
 | Video 1 | 2,5 | 17 |
 | Neun Projekte + TYPO3-Sonderfall + Companion | 2,5 | 19,5 |
-| Video 2 + Zahlen | 4 | 23,5 |
-| Workflow + Stolpersteine | 4 | 27,5 |
-| Drei Sätze + Ende | 2,5 | 30 |
+| Video 2 + Zahlen | 3,5 | 23 |
+| Review-Loop + Video 3 + Whitepaper | 4 | 27 |
+| Stolpersteine + Drei Sätze + Ende | 3 | 30 |
 
 ## Checkliste (Camp-Morgen)
 

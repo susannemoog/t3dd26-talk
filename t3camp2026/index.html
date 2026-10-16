@@ -449,6 +449,60 @@
     </section>
 
     <!-- 15 · Gelernt -->
+    <!-- 13 · Der Review-Loop -->
+    <section id="review-loop">
+      <h3>Qualität</h3>
+      <h2>Der Review-Loop: coder baut, brain prüft</h2>
+      <ul class="kw">
+        <li><strong>coder entwickelt</strong> <span class="dim">— Modell-Scope für den Code</span></li>
+        <li><strong>brain reviewt in frischer Session</strong> <span class="dim">— ohne den Entstehungskontext, anderer Blick</span></li>
+        <li><strong>Befunde zurück an coder</strong> <span class="dim">— berechtigt → Fix, unberechtigt → Begründung</span></li>
+        <li><strong>Orchestriert mit herdr</strong> <span class="dim">— ich kann in jede einzelne Session eingreifen</span></li>
+      </ul>
+      <p class="dim mono" style="font-size:0.62em;margin-top:0.6em">herdr agent prompt brain "Reviewe den letzten Commit …"</p>
+      <aside class="notes">
+        Der Kern meines Workflows: Mit dem Modell-Scope coder entwickle ich den Code. Dann reviewt brain denselben Stand in einer frischen Session — ohne den Entstehungskontext. Ein Modell ist gegenüber seiner eigenen Lösung systematisch unkritisch; wer den Entstehungsweg nicht kennt, liest den Code mit fremdem Blick. Die Befunde gehen zurück an coder: berechtigt wird gefixt, unberechtigt wird begründet.
+
+        Orchestriert ist das mit herdr — beide Agenten laufen in eigenen Panes, und ich kann in jede einzelne Session eingreifen, wenn etwas hängt.
+      </aside>
+    </section>
+
+    <!-- 14 · Video 3 -->
+    <section id="video3">
+      <h3>Video 3</h3>
+      <h2>Der Review-Loop in Aktion</h2>
+      <video class="demo-video" src="assets/videos/demo3-review-loop.mp4" autoplay muted controls playsinline></video>
+      <aside class="notes">
+        Video 3: Der Review-Loop. Die echte herdr-TUI: ein Controller-Agent startet coder und brain, jeder in einer eigenen Session.
+
+        1. Der Controller tippt live die agent-start-Befehle — coder und brain erscheinen mit ihren Badges.
+        2. Tab-Wechsel auf den Loop-Tab: links coder, rechts brain.
+        3. coder baut, brain liefert seine Befunde als nummerierte Liste, coder prüft jeden und antwortet begründet.
+        4. In dieser Demo war der Befund unberechtigt — alle Kontraste im Deck erfüllen die Grenzwerte bereits. Der coder rät nicht, er begründet. Auch das ist das Muster.
+      </aside>
+    </section>
+
+    <!-- 15 · Gelernt aus dem Whitepaper -->
+    <section id="whitepaper">
+      <h3>Einordnung</h3>
+      <h2>Sinnvolle Sachen, übertriebene nicht</h2>
+      <ul class="kw">
+        <li><strong>Review in frischer Session, anderes Modell</strong> <span class="dim">— mein Workflow, Demo 3</span></li>
+        <li><strong>Test-First bindet das Modell an die Realität</strong> <span class="dim">— der Test ist der ausdrückliche Vertrag</span></li>
+        <li><strong>Stop-Punkte bleiben beim Menschen</strong> <span class="dim">— Push, Merge, Audit: meine Entscheidung</span></li>
+        <li><strong>Coverage misst nicht Prüfung</strong> <span class="dim">— 98 Prozent sagen nichts über die Assertions</span></li>
+      </ul>
+      <p class="dim" style="font-size:0.68em;margin-top:0.6em">Der Rest des Neun-Schritt-Prozesses — Board, Vault, Nacht-Runner — ist für ein Team dieser Größe Overhead. Die Mechanik von herdr und die Disziplin der Verträge reichen.</p>
+      <aside class="notes">
+        Es gibt ein Handbuch zu dem Thema — Softwareentwicklung mit KI, mit einem Neun-Schritt-Prozess, Board, Vault und Nacht-Runner. Ich halte vieles davon für übertrieben, aber ein paar Sachen kann man sauber ableiten.
+
+        Review in einer frischen Session durch ein anderes Modell — das mache ich, Demo 3. Test-First, weil der Test das Modell an die Realität bindet. Stop-Punkte beim Menschen — Push und Merge entscheide ich. Und Coverage ist nicht Prüfung.
+
+        Der Rest ist Overhead für ein Team dieser Größe. Das Werkzeug liefert die Mechanik, die Disziplin liefert man.
+      </aside>
+    </section>
+
+    <!-- 16 · Gelernt -->
     <section id="gelernt">
       <h3>Fazit</h3>
       <h2>Drei Sätze</h2>
