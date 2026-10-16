@@ -218,12 +218,12 @@
       <h2>herdr — ein Terminal-Workspace-Manager</h2>
       <ul class="kw">
         <li><strong>Workspaces → Tabs → Panes</strong></li>
-        <li><strong>erkennt Coding-Agenten</strong> <span class="dim">— 20+ Typen: claude, codex, gemini, pi …</span></li>
+        <li><strong>erkennt Coding-Agenten</strong> <span class="dim">— 22 Agent-CLIs: claude, codex, cursor, pi …</span></li>
         <li><strong>Lebenszyklus als API</strong> <span class="dim">— nicht Screen-Scraping</span></li>
       </ul>
       <p class="footnote mono">herdr.dev</p>
       <aside class="notes">
-        Mein Werkzeug dafür ist herdr, von herdr.dev: ein Terminal-Workspace-Manager. Terminals in einer Struktur — Workspaces, Tabs, Panes. Der entscheidende Teil: herdr erkennt Coding-Agenten. Über zwanzig Typen — Claude Code, Codex, Gemini, Cursor und pi, ein schlanker Coding-Agent fürs Terminal. Pro Pane ein anderer; bei mir laufen pi, claude und codex im Wechsel.
+        Mein Werkzeug dafür ist herdr, von herdr.dev: ein Terminal-Workspace-Manager. Terminals in einer Struktur — Workspaces, Tabs, Panes. Der entscheidende Teil: herdr erkennt Coding-Agenten. Zweiundzwanzig Agent-CLIs — Claude Code, Codex, Gemini, Cursor und pi, ein schlanker Coding-Agent fürs Terminal. Pro Pane ein anderer; bei mir laufen pi, claude und codex im Wechsel.
 
         „Erkennt“ heißt: Der Agent ist kein anonymer Prozess, sondern ein Objekt mit Namen, Zustand und Schnittstelle. Vorher habe ich Agenten-Ausgaben per Hand aus dem Terminal gelesen — genau das Screen-Scraping, das ich loswerden wollte.
 
@@ -327,21 +327,53 @@
     <!-- 8 · Weitere Features -->
     <section id="features">
       <h3>Weitere Features</h3>
-      <h2>Maschinen &amp; Benachrichtigungen</h2>
+      <h2>Maschinen, Benachrichtigungen, Handy</h2>
       <ul class="kw">
         <li><strong>Maschinen-Forwarding</strong> <span class="dim">— dieselben Befehle über SSH auf entfernter Maschine</span></li>
         <li><strong>Notifications</strong> <span class="dim">— <span class="mono">herdr notification show</span>, wenn ein Agent fertig ist oder fragt</span></li>
+        <li><strong>Vom Handy</strong> <span class="dim">— per SSH, z. B. mit Moshi: die ganze TUI unterwegs bedienen</span></li>
       </ul>
       <aside class="notes">
-        Zwei Features, die aus dem lokalen Werkzeug etwas Größeres machen:
+        Drei Dinge, die aus dem lokalen Werkzeug etwas Größeres machen:
 
         Maschinen-Forwarding: herdr steuert über SSH verbundene Maschinen — gleiche Befehle, entfernter Rechner. Ich leite so meine Befehle an meine zwei Demo-Maschinen weiter — der Agent arbeitet direkt dort, wo das jeweilige Projekt läuft.
 
         Notifications: herdr notification show meldet sich, wenn ein Agent fertig ist oder auf eine Freigabe wartet. Vorher habe ich zwanzig Minuten auf neun Terminals gestarrt und den einen Moment trotzdem verpasst — heute werde ich gerufen, wenn es etwas zu entscheiden gibt.
+
+        Und ich muss dafür nicht am Schreibtisch sitzen: Ich verbinde mich vom Handy per SSH — zum Beispiel mit Moshi — und bediene das Ganze von dort. Dieselbe TUI, dieselben Agenten. Wenn mich unterwegs eine Notification ruft, antworte ich direkt vom Handy.
       </aside>
     </section>
 
-    <!-- 9 · Video 1 -->
+    <!-- 9 · Mehr herdr -->
+    <section id="mehr-herdr">
+      <h3>Weitere Features</h3>
+      <h2>Was herdr sonst noch kann</h2>
+      <div class="vs">
+        <div>
+          <div class="vs-head hrd">Läuft weiter</div>
+          <ul class="kw">
+            <li><strong>Hintergrund-Server</strong> <span class="dim">— Agenten laufen weiter, wenn die Verbindung weg ist</span></li>
+            <li><strong>Sessions</strong> <span class="dim">— detach, reattach, Restore, Agent-Resume</span></li>
+            <li><strong>Live-Handoff</strong> <span class="dim">— <span class="mono">herdr update --handoff</span>, ohne Agenten zu stoppen</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="vs-head sub">Passt sich an</div>
+          <ul class="kw">
+            <li><strong>Plugins</strong> <span class="dim">— eigene Workflows mit Manifest &amp; Event-Hooks</span></li>
+            <li><strong>Maus oder <span class="mono">ctrl+b</span></strong> <span class="dim">— für tmux- und zellij-Hände</span></li>
+            <li><strong>macOS, Linux, Windows</strong> <span class="dim">— Apache 2.0</span></li>
+          </ul>
+        </div>
+      </div>
+      <aside class="notes">
+        Noch ein paar Dinge, die herdr mitbringt — und die im Alltag mehr ausmachen, als man denkt. Erstens: Es läuft weiter. Die Terminals leben in einem Hintergrund-Server, nicht in meiner Shell. Verbindung weg, Terminal zu — die Agenten arbeiten weiter. Sessions kann ich trennen und wieder anhängen, und nach einem Neustart stellt herdr sie wieder her; die Agenten setzen ihre eigene Session fort. Sogar Updates gehen per Live-Handoff, ohne dass ich laufende Agenten stoppe.
+
+        Zweitens: Es passt sich an. Eigene Workflows baue ich als Plugins, mit Manifest und Event-Hooks — und teilen geht über ein GitHub-Topic. Bedienen lässt es sich mit der Maus oder mit ctrl+b für alle, die tmux oder zellij in den Fingern haben. Und es läuft auf macOS, Linux und Windows, Open Source unter Apache 2.0.
+      </aside>
+    </section>
+
+    <!-- 10 · Video 1 -->
     <section id="video1" class="video-slide">
       <h3>Video 1 · Agenten auf Worktrees</h3>
       <video class="demo-video" src="assets/videos/demo1-tui.mp4" data-autoplay muted controls playsinline preload="auto"></video>
@@ -358,7 +390,7 @@
       </aside>
     </section>
 
-    <!-- 10 · Die Landschaft -->
+    <!-- 11 · Die Landschaft -->
     <section id="systeme">
       <h3>Die Landschaft</h3>
       <h2>Neun Repos, sieben Systeme</h2>
@@ -378,7 +410,7 @@
       </aside>
     </section>
 
-    <!-- 11 · Warum TYPO3 anders ist -->
+    <!-- 12 · Warum TYPO3 anders ist -->
     <section id="typo3-anders">
       <h3>Der Sonderfall</h3>
       <h2>Warum TYPO3 anders ist</h2>
@@ -395,7 +427,7 @@
       </aside>
     </section>
 
-    <!-- 12 · Der Companion in Aktion -->
+    <!-- 13 · Der Companion in Aktion -->
     <section id="companion">
       <h3>MCP in Aktion</h3>
       <h2>Was der typo3-dev-companion liefert</h2>
@@ -414,7 +446,7 @@
       </aside>
     </section>
 
-    <!-- 13 · Video 2 -->
+    <!-- 14 · Video 2 -->
     <section id="video2" class="video-slide">
       <h3>Video 2 · Die Update-Runde, parallel</h3>
       <video class="demo-video" src="assets/videos/demo2-tui.mp4" data-autoplay muted controls playsinline preload="auto"></video>
@@ -428,7 +460,7 @@
       </aside>
     </section>
 
-    <!-- 14 · Resultat -->
+    <!-- 15 · Resultat -->
     <section id="resultat">
       <h3>Resultat</h3>
       <h2>Die Update-Runde in Zahlen</h2>
@@ -446,7 +478,7 @@
       </aside>
     </section>
 
-    <!-- 15 · Workflow -->
+    <!-- 16 · Workflow -->
     <section id="workflow">
       <h3>Der Workflow</h3>
       <h2>Ein Agent pro Aufgabe</h2>
@@ -463,7 +495,7 @@
       </aside>
     </section>
 
-    <!-- 16 · Der Review-Loop -->
+    <!-- 17 · Der Review-Loop -->
     <section id="review-loop">
       <h3>Qualität</h3>
       <h2>Der Review-Loop: coder baut, brain prüft</h2>
@@ -481,7 +513,7 @@
       </aside>
     </section>
 
-    <!-- 17 · Video 3 -->
+    <!-- 18 · Video 3 -->
     <section id="video3" class="video-slide">
       <h3>Video 3 · Der Review-Loop in Aktion</h3>
       <video class="demo-video" src="assets/videos/demo3-review-loop.mp4" data-autoplay muted controls playsinline preload="auto"></video>
@@ -496,7 +528,7 @@
       </aside>
     </section>
 
-    <!-- 18 · Stolpersteine -->
+    <!-- 19 · Stolpersteine -->
     <section id="stolpersteine">
       <h3>Stolpersteine</h3>
       <h2>Was schiefgeht</h2>
@@ -513,7 +545,7 @@
       </aside>
     </section>
 
-    <!-- 19 · Quality Gates -->
+    <!-- 20 · Quality Gates -->
     <section id="quality-gates">
       <h3>Qualität</h3>
       <h2>Meine Quality Gates</h2>
@@ -533,7 +565,7 @@
       </aside>
     </section>
 
-    <!-- 20 · AGENTS.md -->
+    <!-- 21 · AGENTS.md -->
     <section id="agents-md">
       <h3>Verträge</h3>
       <h2>Was in meiner AGENTS.md steht</h2>
@@ -550,7 +582,7 @@
       </aside>
     </section>
 
-    <!-- 21 · Fazit -->
+    <!-- 22 · Fazit -->
     <section id="gelernt">
       <h3>Fazit</h3>
       <h2>Drei Sätze</h2>
@@ -568,7 +600,7 @@
       </aside>
     </section>
 
-    <!-- 22 · Ausblick -->
+    <!-- 23 · Ausblick -->
     <section id="ausblick">
       <h3>Ausblick</h3>
       <h2>Über den Code hinaus: Worklogs automatisch</h2>
@@ -591,7 +623,7 @@
       </aside>
     </section>
 
-    <!-- 23 · Ausblick: Tickets -->
+    <!-- 24 · Ausblick: Tickets -->
     <section id="ausblick-tickets">
       <h3>Ausblick</h3>
       <h2>Gleiches Muster für Ticketsysteme</h2>
@@ -608,20 +640,20 @@
       </aside>
     </section>
 
-    <!-- 24 · Ende -->
+    <!-- 25 · Ende -->
     <section id="ende" class="dark-slide" data-background-color="#000050">
       <h3>Euer Start</h3>
       <h2>Neun sind ein Team. <span class="accent">Fangt mit drei an.</span></h2>
       <ol class="steps">
         <li><span class="step-num">1</span><span><strong>herdr installieren</strong> <span class="step-dim">— herdr.dev</span></span></li>
         <li><span class="step-num">2</span><span><strong>drei separate Tickets, drei Worktrees</strong> <span class="step-dim">— je ein Agent, je ein Branch</span></span></li>
-        <li><span class="step-num">3</span><span><strong>Ergebnis in eine Datei</strong> <span class="step-dim">— und die Entscheidung bleibt bei euch</span></span></li>
+        <li><span class="step-num">3</span><span><strong>Der Merge-Button bleibt eurer</strong> <span class="step-dim">— drei Agenten arbeiten, die Teamleitung seid ihr</span></span></li>
       </ol>
       <p class="end-contact">Danke! · Slides: talk.shinyhappypages.de/t3camp2026 · look@susi.dev</p>
       <aside class="notes">
         Neun sind ein Team — aber niemand muss mit neun anfangen. Fangt mit drei an. So habe ich auch angefangen.
 
-        Erstens: herdr installieren. Zweitens: Nehmt euch drei separate Tickets — gern die, die seit Wochen liegen. Für jedes ein eigener Worktree mit herdr worktree create, und in jedem ein eigener Agent. Drei Branches, eine Codebasis, und keiner kommt dem anderen in die Quere. Drittens, von Anfang an: Ergebnis in eine Datei, nicht ins Terminal. Und die Entscheidung bleibt bei euch.
+        Erstens: herdr installieren. Zweitens: Nehmt euch drei separate Tickets — gern die, die seit Wochen liegen. Für jedes ein eigener Worktree mit herdr worktree create, und in jedem ein eigener Agent. Drei Branches, eine Codebasis, und keiner kommt dem anderen in die Quere. Drittens: Der Merge-Button bleibt eurer. Die Agenten liefern ihre Berichte ab, ihr lest und entscheidet. Drei Agenten sind ein Team — die Teamleitung seid ihr.
 
         Die Slides findet ihr unter talk.shinyhappypages.de. Danke — und jetzt gern eure Fragen.
       </aside>
