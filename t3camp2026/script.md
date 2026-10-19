@@ -243,5 +243,5 @@ Gemessen am Sprechtext (~130 Wörter/Min) plus Video mit Pausen. Vor dem Camp ei
 | 3 | Lesbarkeit der Videos aus der letzten Reihe prüfen; Pausenpunkte einmal durchklicken | ☐ |
 | 4 | Deck offline lokal starten (`npx serve`), Kopie auf USB-Stick, PDF-Export (`?print-pdf`) | ☐ |
 | 5 | Schriften Faktum/Aptos auf dem Präsentationsrechner vorhanden — sonst eigenen Laptop nehmen | ☐ |
-| 6 | Links auf der Endfolie aufrufen: herdr.dev, talk.shinyhappypages.de/t3camp2026 | ☐ |
+| 6 | Links auf der Endfolie aufrufen: herdr.dev, talk.shinyhappypages.de/t3camp2026, team-neusta.de | ☐ |
 | 7 | Beamer-HDMI-Adapter, zweiter Monitor für Speaker Notes | ☐ |
